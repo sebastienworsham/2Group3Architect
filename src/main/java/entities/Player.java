@@ -19,7 +19,10 @@ import java.util.HashMap;
 
 public class Player {
     private Pane gameRoot;
-    private Node player;
+    public Node player;
+
+
+
     private boolean canJump = true;
     public static int pVelocityY;
 
@@ -89,5 +92,7 @@ public class Player {
     public static void changePVelocityY(int value) {
         pVelocityY += value;
     }
-
+    public Node getPlayer() {
+        return player;
+    }
 }

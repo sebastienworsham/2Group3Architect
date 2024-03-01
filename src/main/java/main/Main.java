@@ -17,51 +17,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main extends Application {
-    static final int GAMEWIDTH = 1280;
-    static final int GAMEHEIGHT = 720;
+    public static final int GAMEWIDTH = 1280;
+    public static final int GAMEHEIGHT = 720;
     protected Pane gameRoot = new Pane();
-    private HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
-    private boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
-    protected Game game;
-
-    Player playerInstance;
+    protected Pane uiRoot = new Pane();
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Scene scene = new Scene(gameRoot, GAMEWIDTH, GAMEHEIGHT);
-        game = new Game(gameRoot);
-        game.startGame();
 
-        playerInstance = new Player(gameRoot);
-        scene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
-        scene.setOnKeyReleased(event -> keys.put(event.getCode(), false));
-
-        primaryStage.setScene(scene);
+        Scene uiScene = new Scene(uiRoot, GAMEWIDTH, GAMEHEIGHT);
+        StartScreen startScreen = new StartScreen(uiRoot, gameRoot, primaryStage);
+        primaryStage.setScene(uiScene);
         primaryStage.show();
 
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                checkKeyInput();
-            }
-        };
-        timer.start();
-    }
-
-    private void checkKeyInput() {
-        if (isPressed(KeyCode.W)) {
-            playerInstance.jumpPlayer();
-        }
-        if (isPressed(KeyCode.A)) {
-            playerInstance.movePlayerX(-5);
-        }
-        if (isPressed(KeyCode.D)) {
-            playerInstance.movePlayerX(5);
-        }
-        if (Player.pVelocityY < 10) {
-            Player.changePVelocityY(1);
-        }
-        playerInstance.movePlayerY(Player.pVelocityY);
     }
 }

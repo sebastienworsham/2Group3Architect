@@ -17,14 +17,15 @@ import level.LevelController;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static main.Main.GAMEHEIGHT;
-import static main.Main.GAMEWIDTH;
+import static main.Main.*;
+import static main.StartScreen.playerInstance;
 
 public class Game {
 
     private Pane gameRoot;
     private int currentLevelNum;
     LevelController levelController;
+
 
     public Game(Pane gameRoot) {
         this.gameRoot = gameRoot;
@@ -38,9 +39,10 @@ public class Game {
 
         levelController = new LevelController(gameRoot);
         levelController.renderLevel(currentLevelNum);
+        levelController.scrollLevel(playerInstance.getPlayer());
 
         //drawCurrentLevel(currentLevel);
 
-
+        bg.toBack(); //Makes the background appear behind everything else
     }
 }
