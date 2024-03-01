@@ -18,20 +18,21 @@ import static main.Main.GAMEHEIGHT;
 import static main.Main.GAMEWIDTH;
 
 public class StartScreen {
-    Pane gameRoot;
+    Pane uiRoot;
+    Pane levelRoot;
+    Pane playerRoot;
     Stage primaryStage;
     protected Game game;
-    static Player playerInstance;
-    private HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
-    private boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
-    public StartScreen(Pane uiRoot, Pane gameRoot, Stage primaryStage) {
-        this.gameRoot = gameRoot;
-        this.primaryStage = primaryStage;
+    public static Player playerInstance;
 
-        renderStartScreen(uiRoot);
+    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage) {
+        this.uiRoot = uiRoot;
+        this.levelRoot = levelRoot;
+        this.playerRoot = playerRoot;
+        this.primaryStage = primaryStage;
     }
 
-    void renderStartScreen(Pane uiRoot) {
+    void renderStartScreen() {
         uiRoot.setStyle("-fx-background-color: black;");
         uiRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
 
@@ -48,40 +49,10 @@ public class StartScreen {
     }
 
     private void setupGameScene() {
-        Scene gameScene = new Scene(gameRoot, GAMEWIDTH, GAMEHEIGHT);
+        Scene gameScene = new Scene(new Pane(playerRoot, levelRoot), GAMEWIDTH, GAMEHEIGHT);
+        game = new Game(levelRoot, gameScene);
+        playerInstance = new Player(playerRoot);
+        game.startGame(primaryStage);
 
-
-        playerInstance = new Player(gameRoot);
-        game = new Game(gameRoot);
-        game.startGame();
-
-        gameScene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
-        gameScene.setOnKeyReleased(event -> keys.put(event.getCode(), false));
-        primaryStage.setScene(gameScene);
-        primaryStage.show();
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                checkKeyInput();
-            }
-        };
-        timer.start();
-    }
-
-    private void checkKeyInput() {
-        if (isPressed(KeyCode.W)) {
-            playerInstance.jumpPlayer();
-        }
-        if (isPressed(KeyCode.A)) {
-            playerInstance.movePlayerX(-5);
-        }
-        if (isPressed(KeyCode.D)) {
-            playerInstance.movePlayerX(5);
-        }
-        if (Player.pVelocityY < 10) {
-            Player.changePVelocityY(1);
-        }
-        playerInstance.movePlayerY(Player.pVelocityY);
     }
 }

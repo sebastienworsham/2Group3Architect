@@ -21,28 +21,52 @@ import static main.Main.*;
 import static main.StartScreen.playerInstance;
 
 public class Game {
+    private Pane levelRoot;
+    public LevelController levelController;
+    Scene gameScene;
+    private HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
+    private boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
 
-    private Pane gameRoot;
-    private int currentLevelNum;
-    LevelController levelController;
 
-
-    public Game(Pane gameRoot) {
-        this.gameRoot = gameRoot;
-        currentLevelNum = 1;
+    public Game(Pane levelRoot, Scene gameScene) {
+        this.levelRoot = levelRoot;
+        this.gameScene = gameScene;
     }
 
-    public void startGame() {
-        Rectangle bg = new Rectangle(GAMEWIDTH, GAMEHEIGHT);
-        bg.setFill(Color.RED);
-        gameRoot.getChildren().add(bg);
-
-        levelController = new LevelController(gameRoot);
-        levelController.renderLevel(currentLevelNum);
+    public void startGame(Stage primaryStage) {
+        levelController = new LevelController(levelRoot);
+        levelController.nextLevel();
         levelController.scrollLevel(playerInstance.getPlayer());
 
-        //drawCurrentLevel(currentLevel);
+        gameScene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
+        gameScene.setOnKeyReleased(event -> keys.put(event.getCode(), false));
+        primaryStage.setScene(gameScene);
+        primaryStage.show();
 
-        bg.toBack(); //Makes the background appear behind everything else
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                checkKeyInput();
+            }
+        };
+        timer.start();
+    }
+    private void checkKeyInput() {
+        if (isPressed(KeyCode.W)) {
+            playerInstance.jumpPlayer();
+        }
+        if (isPressed(KeyCode.A)) {
+            playerInstance.movePlayerX(-5);
+        }
+        if (isPressed(KeyCode.D)) {
+            playerInstance.movePlayerX(5);
+        }
+        if (playerInstance.getPlayerX() > 800) {
+            levelController.nextLevel();
+        }
+        if (Player.pVelocityY < 10) {
+            Player.changePVelocityY(1);
+        }
+        playerInstance.movePlayerY(Player.pVelocityY);
     }
 }

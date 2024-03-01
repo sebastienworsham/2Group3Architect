@@ -17,25 +17,52 @@ import main.Game;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static main.Main.GAMEHEIGHT;
 import static main.Main.GAMEWIDTH;
+import static main.StartScreen.playerInstance;
 
 public class LevelController {
-    private String currentLevel;
+    //private int currentLevelNum;
+    private static String[] currentLevelArray;
     private int levelWidth;
-    private Pane gameRoot;
+    private Pane levelRoot;
     public static ArrayList<Node> platforms = new ArrayList<Node>();
+    int currentLevelNum;
 
-    public LevelController(Pane gameRoot) {
-        this.gameRoot = gameRoot;
+    public LevelController(Pane levelRoot) {
+        this.levelRoot = levelRoot;
+        currentLevelNum = 0;
     }
 
-    public void renderLevel(int currentLevelNumber) {
-        currentLevel = "LEVEL" + Integer.toString(currentLevelNumber);
-        System.out.print(currentLevel);
-        levelWidth = LevelInfo.LEVEL1[0].length() * 60;
+    public void nextLevel() {
+        levelRoot.getChildren().clear();
+        currentLevelNum += 1;
+        levelRoot.setTranslateX(0);
+        levelRoot.setTranslateY(0);
+        playerInstance.resetPlayerPosition();
 
-        for (int i=0; i<LevelInfo.LEVEL1.length; i++) {
-            String currentLine = LevelInfo.LEVEL1[i];
+        switch (currentLevelNum) {
+            case 1:
+                currentLevelArray = LevelInfo.LEVEL1.clone();
+                break;
+            case 2:
+                currentLevelArray = LevelInfo.LEVEL2.clone();
+                break;
+            case 3:
+                currentLevelArray = LevelInfo.LEVEL3.clone();
+                break;
+            default:
+                currentLevelArray = LevelInfo.LEVEL1.clone();
+                break;
+        }
+        renderLevel();
+    }
+
+    public void renderLevel() {
+        levelWidth = currentLevelArray[0].length() * 60;
+
+        for (int i=0; i<currentLevelArray.length; i++) {
+            String currentLine = currentLevelArray[i];
             for (int j=0; j<currentLine.length(); j++) {
                 if(currentLine.charAt(j) == '1') {
                     Node platform = drawRectangle(j*60, i*60, 60, 60, Color.BLACK);
@@ -48,7 +75,7 @@ public class LevelController {
         player.translateXProperty().addListener((obs, old, newValue) -> {
             int offset = newValue.intValue();
             if (offset > 640 && offset < levelWidth-640) {
-                gameRoot.setLayoutX(-(offset - 640));
+                levelRoot.setLayoutX(-(offset - 640));
             }
         });
     }
@@ -58,7 +85,7 @@ public class LevelController {
         entity.setTranslateY(y);
         entity.setFill(color);
 
-        gameRoot.getChildren().add(entity);
+        levelRoot.getChildren().add(entity);
         return entity;
     }
 }

@@ -18,18 +18,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Player {
-    private Pane gameRoot;
+    private Pane playerRoot;
     public Node player;
-
-
-
     private boolean canJump = true;
     public static int pVelocityY;
 
-    public Player(Pane gameRoot) {
-        this.gameRoot = gameRoot;
-
-        player = drawRectangle(100, 100, 32, 32, Color.WHITE);
+    public Player(Pane playerRoot) {
+        this.playerRoot = playerRoot;
+        player = drawRectangle(50, 50, 32, 32, Color.BLUE);
+        player.toFront();
     }
 
     public void jumpPlayer() {
@@ -78,6 +75,10 @@ public class Player {
         }
 
     }
+    public void resetPlayerPosition() {
+        player.setTranslateX(50);
+        player.setTranslateY(50);
+    }
 
     public Node drawRectangle (int x, int y, int w, int h, Color color) {
         Rectangle entity = new Rectangle(w, h);
@@ -85,7 +86,7 @@ public class Player {
         entity.setTranslateY(y);
         entity.setFill(color);
 
-        gameRoot.getChildren().add(entity);
+        playerRoot.getChildren().add(entity);
         return entity;
     }
 
@@ -94,5 +95,8 @@ public class Player {
     }
     public Node getPlayer() {
         return player;
+    }
+    public int getPlayerX() {
+        return (int) player.getTranslateX();
     }
 }
