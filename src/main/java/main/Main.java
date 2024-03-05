@@ -19,6 +19,7 @@ import java.util.HashMap;
 public class Main extends Application {
     public static final int GAMEWIDTH = 1280;
     public static final int GAMEHEIGHT = 720;
+    public static final String SAVEPATH = "src/main/java/main/save.csv";
     protected Pane levelRoot = new Pane();
     protected Pane playerRoot = new Pane();
     protected Pane uiRoot = new Pane();
@@ -28,8 +29,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Scene uiScene = new Scene(uiRoot, GAMEWIDTH, GAMEHEIGHT);
 
-        StartScreen startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage);
-        startScreen.renderStartScreen();
+        StartScreen startScreen;
+        startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage);
+        startScreen.renderStartScreen(startScreen);
 
         primaryStage.setScene(uiScene);
         primaryStage.show();

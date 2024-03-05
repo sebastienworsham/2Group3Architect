@@ -26,6 +26,8 @@ public class Game {
     Scene gameScene;
     private HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
     private boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
+    boolean nKeyPressed;
+    boolean mKeyPressed;
 
 
     public Game(Pane levelRoot, Scene gameScene) {
@@ -33,10 +35,10 @@ public class Game {
         this.gameScene = gameScene;
     }
 
-    public void startGame(Stage primaryStage) {
-        levelController = new LevelController(levelRoot);
+    public void startGame(Stage primaryStage,int startLevelNum) {
+        levelController = new LevelController(levelRoot, startLevelNum);
         levelController.nextLevel();
-        levelController.scrollLevel(playerInstance.getPlayer());
+ //       levelController.scrollLevel(playerInstance.getPlayer());
 
         gameScene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
         gameScene.setOnKeyReleased(event -> keys.put(event.getCode(), false));
@@ -61,12 +63,22 @@ public class Game {
         if (isPressed(KeyCode.D)) {
             playerInstance.movePlayerX(5);
         }
-        if (playerInstance.getPlayerX() > 800) {
-            levelController.nextLevel();
-        }
         if (Player.pVelocityY < 10) {
             Player.changePVelocityY(1);
         }
         playerInstance.movePlayerY(Player.pVelocityY);
+
+        if (isPressed(KeyCode.N) && !nKeyPressed) { //use n key for next level
+            levelController.nextLevel();
+            nKeyPressed = true;
+        } else if (!isPressed(KeyCode.N)) {
+            nKeyPressed = false;
+        }
+        if (isPressed(KeyCode.M) && !mKeyPressed) { //use m key to save game
+            levelController.saveCurrentLevel();
+            mKeyPressed = true;
+        } else if (!isPressed(KeyCode.M)) {
+            mKeyPressed = false;
+        }
     }
 }

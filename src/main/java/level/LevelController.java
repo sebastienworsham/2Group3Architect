@@ -12,13 +12,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import main.Game;
 
+
+import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static main.Main.GAMEHEIGHT;
-import static main.Main.GAMEWIDTH;
+import static main.Main.*;
 import static main.StartScreen.playerInstance;
 
 public class LevelController {
@@ -33,13 +34,19 @@ public class LevelController {
         this.levelRoot = levelRoot;
         currentLevelNum = 0;
     }
+    public LevelController(Pane levelRoot, int currentLevelNum) {
+        this.levelRoot = levelRoot;
+        this.currentLevelNum = currentLevelNum;
+    }
 
     public void nextLevel() {
-        levelRoot.getChildren().clear();
+        playerInstance.resetPlayerPosition(); //puts player in top left of screen
+        levelRoot.getChildren().clear(); //clears previous level
         currentLevelNum += 1;
-        levelRoot.setTranslateX(0);
-        levelRoot.setTranslateY(0);
-        playerInstance.resetPlayerPosition();
+       // levelRoot.setTranslateX(0);
+       // levelRoot.setTranslateY(0);
+
+        platforms.clear(); //clears previous level collision information
 
         switch (currentLevelNum) {
             case 1:
@@ -51,8 +58,15 @@ public class LevelController {
             case 3:
                 currentLevelArray = LevelInfo.LEVEL3.clone();
                 break;
+            case 4:
+                currentLevelArray = LevelInfo.LEVEL4.clone();
+                break;
+            case 5:
+                currentLevelArray = LevelInfo.LEVEL5.clone();
+                break;
             default:
                 currentLevelArray = LevelInfo.LEVEL1.clone();
+                currentLevelNum = 1;
                 break;
         }
         renderLevel();
@@ -71,14 +85,18 @@ public class LevelController {
             }
         }
     }
+
     public void scrollLevel(Node player) {
         player.translateXProperty().addListener((obs, old, newValue) -> {
             int offset = newValue.intValue();
             if (offset > 640 && offset < levelWidth-640) {
-                levelRoot.setLayoutX(-(offset - 640));
+                System.out.println("*"+offset);
+                levelRoot.setTranslateX(-offset + 640);
+            } else {
+                System.out.println(offset);
             }
         });
-    }
+    } //method scrollLevel currently not used because it isn't working
     public Node drawRectangle (int x, int y, int w, int h, Color color) {
         Rectangle entity = new Rectangle(w, h);
         entity.setTranslateX(x);
@@ -87,5 +105,23 @@ public class LevelController {
 
         levelRoot.getChildren().add(entity);
         return entity;
+    }
+
+    public void saveCurrentLevel() {
+        System.out.println("saving current level");
+        File file = new File(SAVEPATH);
+        try {
+            FileWriter fw = new FileWriter(file, false);
+
+            if(file.createNewFile()) {
+                System.out.println(SAVEPATH + "doesn't yet exist, created");
+            } else {
+                System.out.println(SAVEPATH + " already exists, appending");
+            }
+            fw.append(Integer.toString(currentLevelNum));
+            fw.close();
+        } catch (IOException e) {
+            System.err.print(e.getMessage());
+        }
     }
 }

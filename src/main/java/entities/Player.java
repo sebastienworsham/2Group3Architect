@@ -3,16 +3,19 @@ package entities;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import level.LevelController;
-import main.Game;
+//import main.Game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +26,11 @@ public class Player {
     private boolean canJump = true;
     public static int pVelocityY;
 
+    Circle rotationMark;
+
     public Player(Pane playerRoot) {
         this.playerRoot = playerRoot;
-        player = drawRectangle(50, 50, 32, 32, Color.BLUE);
+        player = drawPlayer(50, 50, Color.LIGHTGOLDENRODYELLOW);
         player.toFront();
     }
 
@@ -42,14 +47,12 @@ public class Player {
             for (Node platform: LevelController.platforms) {    //Check for Collisions
                 if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (movingRight) {
-                        if (player.getTranslateX() + 40 == platform.getTranslateX()) {
-                            return; //if collision detected return
-                        }
+                        player.setTranslateX(player.getTranslateX() - 3);
+                        return; //if collision detected return
                     }
                     else {
-                        if (player.getTranslateX() == platform.getTranslateX() + 600) {
-                            return; //if collision detected return
-                        }
+                        player.setTranslateX(player.getTranslateX() + 3);
+                        return; //if collision detected return
                     }
                 }
 
@@ -59,32 +62,33 @@ public class Player {
     }
 
     public void movePlayerY(int pVelocityY) {
-        boolean movingDown = pVelocityY > 0; //if velocity positive player is moving down, otherwise moving up
+        boolean movingDown = pVelocityY > 0; //if velocity is positive player is moving down, otherwise player is moving up
 
         for (int i=0; i<Math.abs(pVelocityY); i++) {
-            for (Node platform: LevelController.platforms) {
+            for (Node platform: LevelController.platforms) { //runs through the
                 if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (movingDown) {
                         player.setTranslateY(player.getTranslateY() - 1);
                         canJump = true;
+                        return;
+                    } else {
+                        player.setTranslateY(player.getTranslateY() + 2);
                         return;
                     }
                 }
             }
             player.setTranslateY(player.getTranslateY() + (movingDown ? 1 : -1));
         }
-
     }
     public void resetPlayerPosition() {
-        player.setTranslateX(50);
-        player.setTranslateY(50);
+        player.setTranslateX(100);
+        player.setTranslateY(100);
     }
 
-    public Node drawRectangle (int x, int y, int w, int h, Color color) {
-        Rectangle entity = new Rectangle(w, h);
+    public Node drawPlayer (int x, int y, Color color) {
+        Circle entity = new Circle(30, color);
         entity.setTranslateX(x);
         entity.setTranslateY(y);
-        entity.setFill(color);
 
         playerRoot.getChildren().add(entity);
         return entity;
@@ -93,10 +97,6 @@ public class Player {
     public static void changePVelocityY(int value) {
         pVelocityY += value;
     }
-    public Node getPlayer() {
-        return player;
-    }
-    public int getPlayerX() {
-        return (int) player.getTranslateX();
-    }
+
+
 }
