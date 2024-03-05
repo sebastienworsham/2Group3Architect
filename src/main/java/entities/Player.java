@@ -3,7 +3,6 @@ package entities;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -12,10 +11,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import level.LevelController;
-//import main.Game;
+import main.Game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,8 +23,6 @@ public class Player {
     public Node player;
     private boolean canJump = true;
     public static int pVelocityY;
-
-    Circle rotationMark;
 
     public Player(Pane playerRoot) {
         this.playerRoot = playerRoot;
@@ -65,7 +61,7 @@ public class Player {
         boolean movingDown = pVelocityY > 0; //if velocity is positive player is moving down, otherwise player is moving up
 
         for (int i=0; i<Math.abs(pVelocityY); i++) {
-            for (Node platform: LevelController.platforms) { //runs through the
+            for (Node platform: LevelController.platforms) {
                 if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (movingDown) {
                         player.setTranslateY(player.getTranslateY() - 1);
@@ -89,6 +85,7 @@ public class Player {
         Circle entity = new Circle(30, color);
         entity.setTranslateX(x);
         entity.setTranslateY(y);
+        entity.setFill(color);
 
         playerRoot.getChildren().add(entity);
         return entity;
