@@ -42,14 +42,10 @@ public class Player {
             for (Node platform: LevelController.platforms) {    //Check for Collisions
                 if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (movingRight) {
-                        if (player.getTranslateX() + 40 == platform.getTranslateX()) {
-                            return; //if collision detected return
-                        }
+                        player.setTranslateX(player.getTranslateX() - 3);
                     }
                     else {
-                        if (player.getTranslateX() == platform.getTranslateX() + 600) {
-                            return; //if collision detected return
-                        }
+                        player.setTranslateX(player.getTranslateX() + 3);
                     }
                 }
 
@@ -67,6 +63,10 @@ public class Player {
                     if (movingDown) {
                         player.setTranslateY(player.getTranslateY() - 1);
                         canJump = true;
+                        return;
+                    } else {
+                        player.setTranslateY(player.getTranslateY() + 5);
+                        canJump = false;
                         return;
                     }
                 }
