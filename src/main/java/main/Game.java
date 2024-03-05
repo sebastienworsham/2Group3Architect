@@ -52,7 +52,7 @@ public class Game {
         timer.start();
     }
     private void checkKeyInput() {
-        if (isPressed(KeyCode.W)) {
+        if (isPressed(KeyCode.SPACE)) {
             playerInstance.jumpPlayer();
         }
         if (isPressed(KeyCode.A)) {
