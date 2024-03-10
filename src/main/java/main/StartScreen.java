@@ -1,26 +1,22 @@
 package main;
 
 import entities.Player;
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.util.HashMap;
+import java.io.*;
 
-import static main.Main.GAMEHEIGHT;
-import static main.Main.GAMEWIDTH;
+import static main.Main.*;
 
 public class StartScreen {
     Pane bgRoot;
@@ -31,6 +27,9 @@ public class StartScreen {
     Stage primaryStage;
     protected Game game;
     public static Player playerInstance;
+    public static String currentUserName;
+    String[] currentUser;
+    public static Boolean newUser = false;
 
     public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage) {
         this.uiRoot = uiRoot;
@@ -68,7 +67,7 @@ public class StartScreen {
         });
 
         newGameButton.setOnAction(event -> {
-            setupGameScene(-1);
+            setupGameScene(-1, askUsername());
         });
         loadGameButton.setOnAction(event -> {
             setupLoadScene(startScreen);
@@ -99,12 +98,23 @@ public class StartScreen {
         uiRoot.getChildren().add(layout);
     }
 
-    public void setupGameScene(int savedLevelNum) {
+    public String[] askUsername() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setHeaderText("Enter new username");
+        currentUserName = dialog.showAndWait().orElse(null);
+
+        newUser = true;
+
+        currentUser = new String[] {(currentUserName), ("0")};
+        return currentUser;
+    }
+
+    public void setupGameScene(int savedLevelNum, String[] currentUser) {
         bgRoot = new Pane();
         bgRoot.setStyle("-fx-background-color: #87ce87;");
         bgRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
         Scene gameScene = new Scene(new Pane(bgRoot, playerRoot, levelRoot), GAMEWIDTH, GAMEHEIGHT);
-        game = new Game(levelRoot, gameScene);
+        game = new Game(levelRoot, gameScene, currentUser);
         playerInstance = new Player(playerRoot);
 
         game.startGame(primaryStage, savedLevelNum);

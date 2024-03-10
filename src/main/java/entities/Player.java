@@ -91,6 +91,10 @@ public class Player {
         return entity;
     }
 
+    public Node getPlayer() {
+        return player;
+    }
+
     public static void changePVelocityY(int value) {
         pVelocityY += value;
     }

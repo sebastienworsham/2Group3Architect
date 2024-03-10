@@ -8,8 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/level/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/level/LevelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/level/LevelInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/level/LevelInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" afterDir="false" />
     </list>
@@ -22,12 +22,27 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sebastienworsham&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="9161a57a-535d-43c6-8ab0-c0c089a546ec" />
+        <option name="url" value="https://github.com/sebastienworsham/2Group3Architect.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-1.8.0_402/Contents/Home/javafx-src.zip!/com/sun/javafx/runtime/SystemProperties.java" root0="SKIP_INSPECTION" />
@@ -60,6 +75,32 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="Platformer4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -86,6 +127,10 @@
       <workItem from="1709601413464" duration="152000" />
       <workItem from="1709607139108" duration="1223000" />
       <workItem from="1709614136100" duration="987000" />
+      <workItem from="1709617277759" duration="186000" />
+      <workItem from="1710033728246" duration="3323000" />
+      <workItem from="1710088826789" duration="9748000" />
+      <workItem from="1710099369330" duration="293000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -116,6 +161,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit" />
