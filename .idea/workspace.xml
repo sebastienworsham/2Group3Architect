@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d833d84-dd71-4f73-9250-b08c463b7a4a" name="Changes" comment="Level changes (still glitchy)">
+    <list default="true" id="8d833d84-dd71-4f73-9250-b08c463b7a4a" name="Changes" comment="Added score">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/level/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/level/LevelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/save.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/save.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/usernames.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +130,10 @@
       <workItem from="1710033728246" duration="3323000" />
       <workItem from="1710088826789" duration="9748000" />
       <workItem from="1710099369330" duration="293000" />
+      <workItem from="1710106124992" duration="318000" />
+      <workItem from="1710108557482" duration="3041000" />
+      <workItem from="1710200051767" duration="5004000" />
+      <workItem from="1710205593283" duration="350000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -156,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709263278288</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added score">
+      <option name="closed" value="true" />
+      <created>1710106348310</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710106348310</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,7 +188,8 @@
     <MESSAGE value="First Commit" />
     <MESSAGE value="Added StartScreen" />
     <MESSAGE value="Level changes (still glitchy)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Level changes (still glitchy)" />
+    <MESSAGE value="Added score" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added score" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

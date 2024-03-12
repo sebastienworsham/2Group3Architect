@@ -13,10 +13,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,7 +24,6 @@ public class Main extends Application {
     public static final int GAMEWIDTH = 1280;
     public static final int GAMEHEIGHT = 720;
     public static final String SAVEPATH = "src/main/java/main/save.csv";
-    public static final String USERPATH = "src/main/java/main/usernames.csv";
     protected Pane levelRoot = new Pane();
     protected Pane playerRoot = new Pane();
     protected Pane uiRoot = new Pane();
@@ -42,7 +40,7 @@ public class Main extends Application {
         Scene uiScene = new Scene(uiRoot, GAMEWIDTH, GAMEHEIGHT);
 
         StartScreen startScreen;
-        startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage);
+        startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage, uiScene);
         startScreen.renderStartScreen(startScreen);
 
         primaryStage.setScene(uiScene);

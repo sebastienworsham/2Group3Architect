@@ -30,12 +30,16 @@ public class StartScreen {
     public static String currentUserName;
     String[] currentUser;
     public static Boolean newUser = false;
+    LeaderboardScreen lbScreen;
+    Scene uiScene;
 
-    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage) {
+    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage, Scene uiScene) {
         this.uiRoot = uiRoot;
         this.levelRoot = levelRoot;
         this.playerRoot = playerRoot;
         this.primaryStage = primaryStage;
+        this.uiScene = uiScene;
+        lbScreen = new LeaderboardScreen(primaryStage, uiScene);
     }
 
     void renderStartScreen(StartScreen startScreen) {
@@ -50,8 +54,10 @@ public class StartScreen {
 
         Button newGameButton = new Button("New Game");
         Button loadGameButton = new Button("Load Game");
+        Button leaderboardButton = new Button("Leaderboard");
         newGameButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
-        loadGameButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 19));
+        loadGameButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
+        leaderboardButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
 
         newGameButton.setOnMouseMoved(event -> {
             newGameButton.setStyle("-fx-background-color: #78ced9; ");
@@ -65,6 +71,12 @@ public class StartScreen {
         loadGameButton.setOnMouseExited(event -> {
             loadGameButton.setStyle("-fx-background-color: #ffffff; ");
         });
+        leaderboardButton.setOnMouseMoved(event -> {
+            leaderboardButton.setStyle("-fx-background-color: #78ced9");
+        });
+        leaderboardButton.setOnMouseExited(event -> {
+            leaderboardButton.setStyle("-fx-background-color: #ffffff; ");
+        });
 
         newGameButton.setOnAction(event -> {
             setupGameScene(-1, askUsername());
@@ -72,10 +84,13 @@ public class StartScreen {
         loadGameButton.setOnAction(event -> {
             setupLoadScene(startScreen);
         });
+        leaderboardButton.setOnAction(event -> {
+            lbScreen.setupLbScreen();
+        });
 
         HBox hBox = new HBox();
         hBox.setSpacing(20);
-        hBox.getChildren().addAll(newGameButton, loadGameButton);
+        hBox.getChildren().addAll(newGameButton, loadGameButton, leaderboardButton);
         hBox.setAlignment(Pos.CENTER);
 
 
@@ -102,6 +117,7 @@ public class StartScreen {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setHeaderText("Enter new username");
         currentUserName = dialog.showAndWait().orElse(null);
+
 
         newUser = true;
 
