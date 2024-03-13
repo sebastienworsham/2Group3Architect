@@ -44,12 +44,10 @@ public class LevelController {
         this.game = game;
     }
 
-    public void nextLevel() {
+    public void nextLevel(String[] currentUser) {
         playerInstance.resetPlayerPosition(); //puts player in top left of screen
         levelRoot.getChildren().clear(); //clears previous level
         currentLevelNum += 1;
-       // levelRoot.setTranslateX(0);
-       // levelRoot.setTranslateY(0);
 
         platforms.clear(); //clears previous level collision information
 
@@ -112,5 +110,7 @@ public class LevelController {
         //users.set(1, currentUser);
     }
 
-
+    public int getCurrentLevelNum() {
+        return currentLevelNum;
+    }
 }

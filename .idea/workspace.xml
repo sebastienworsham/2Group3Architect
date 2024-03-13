@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d833d84-dd71-4f73-9250-b08c463b7a4a" name="Changes" comment="Added score">
+    <list default="true" id="8d833d84-dd71-4f73-9250-b08c463b7a4a" name="Changes" comment="Added Leaderboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/level/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/level/LevelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/LevelScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/LevelScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/app.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/save.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/save.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/usernames.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +135,10 @@
       <workItem from="1710108557482" duration="3041000" />
       <workItem from="1710200051767" duration="5004000" />
       <workItem from="1710205593283" duration="350000" />
+      <workItem from="1710206046430" duration="72000" />
+      <workItem from="1710286748429" duration="19000" />
+      <workItem from="1710286989728" duration="1215000" />
+      <workItem from="1710291703826" duration="2774000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -167,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710106348310</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added Leaderboard">
+      <option name="closed" value="true" />
+      <created>1710206102854</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710206102854</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,7 +191,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -189,7 +214,8 @@
     <MESSAGE value="Added StartScreen" />
     <MESSAGE value="Level changes (still glitchy)" />
     <MESSAGE value="Added score" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added score" />
+    <MESSAGE value="Added Leaderboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Leaderboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -35,7 +35,11 @@ public class LoadScreen {
             Button loadGameButton = new Button(Arrays.toString(userInfo));
             int finalI = indexInUsers;
             loadGameButton.setOnAction(event -> {
-                startScreen.setupGameScene(-1, getSaveInfo(finalI));
+                //startScreen.setupGameScene(-1, getSaveInfo(finalI));
+
+                LevelScreen levelScreen = new LevelScreen(startScreen);
+                levelScreen.showLevelSelection(primaryStage, getSaveInfo(finalI));
+
             });
             vbox.getChildren().add(loadGameButton);
             indexInUsers ++;
