@@ -18,12 +18,11 @@ import static main.Main.GAMEWIDTH;
 public class LevelScreen {
     StartScreen startScreen;
 
-    public LevelScreen(
-            StartScreen startScreen) {
+    public LevelScreen(StartScreen startScreen) {
         this.startScreen = startScreen;
     }
 
-    public void showLevelSelection(Stage primaryStage) {
+    public void showLevelSelection(Stage primaryStage, String[] currentUser) {
         Label selectLevelLabel = new Label("Select Level");
         selectLevelLabel.setFont(Font.font("Gameplay", FontWeight.BOLD, 24));
         
@@ -43,19 +42,19 @@ public class LevelScreen {
         level5Button.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
 
         level1Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(0);
+            startScreen.setupGameScene(0, currentUser);
         });
         level2Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(1);
+            startScreen.setupGameScene(1, currentUser);
         });
         level3Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(2);
+            startScreen.setupGameScene(2, currentUser);
         });
         level4Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(3);
+            startScreen.setupGameScene(3, currentUser);
         });
         level5Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(4);
+            startScreen.setupGameScene(4, currentUser);
         });
 
         level1Button.setOnMouseMoved(event -> {

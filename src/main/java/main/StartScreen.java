@@ -118,10 +118,9 @@ public class StartScreen {
         dialog.setHeaderText("Enter new username");
         currentUserName = dialog.showAndWait().orElse(null);
 
-
         newUser = true;
 
-        currentUser = new String[] {(currentUserName), ("0")};
+        currentUser = new String[] {(currentUserName), ("0"), ("0")};
         return currentUser;
     }
 
@@ -133,7 +132,7 @@ public class StartScreen {
         game = new Game(levelRoot, gameScene, currentUser);
         playerInstance = new Player(playerRoot);
 
-        game.startGame(primaryStage, savedLevelNum);
+        game.startGame(primaryStage, savedLevelNum, currentUser);
     }
     private void setupLoadScene(StartScreen startScreen) {
         loadScreenPane = new Pane();

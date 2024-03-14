@@ -44,11 +44,11 @@ public class Game {
         this.currentUser = currentUser;
     }
 
-    public void startGame(Stage primaryStage,int startLevelNum) {
+    public void startGame(Stage primaryStage,int startLevelNum, String[] currentUser) {
         coin = new Coin(levelRoot);
         setScore(Integer.parseInt(currentUser[1]));
         levelController = new LevelController(levelRoot, startLevelNum, coin, this);
-        levelController.nextLevel();
+        levelController.nextLevel(currentUser);
 
         gameScene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
         gameScene.setOnKeyReleased(event -> keys.put(event.getCode(), false));
@@ -82,23 +82,24 @@ public class Game {
         playerInstance.movePlayerY(Player.pVelocityY);
 
         if (coin.isTouchingPlayer(playerInstance.getPlayer())) {
-            levelController.nextLevel();
+            levelController.nextLevel(currentUser);
             levelController.saveScore(currentUser);
         }
     }
 
     private void saveOnClose() {
-        try {
-            FileOutputStream fos = new FileOutputStream(SAVEPATH);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(users);
-            oos.close();
-        } catch (IOException e) {
-            System.err.print(e.getMessage());
-        }
         if (StartScreen.newUser) {
-            users.add(new String[]{(StartScreen.currentUserName), String.valueOf((score))});
+            users.add(new String[] { StartScreen.currentUserName, String.valueOf(score)});
+            try {
+                FileOutputStream fos = new FileOutputStream(SAVEPATH);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+                oos.writeObject(users);
+                oos.close();
+            } catch (IOException e) {
+                System.err.print(e.getMessage());
+            }
+        } else {
             try {
                 FileOutputStream fos = new FileOutputStream(SAVEPATH);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
