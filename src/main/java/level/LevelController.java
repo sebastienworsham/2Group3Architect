@@ -32,36 +32,44 @@ public class LevelController {
     int currentLevelNum;
     Coin coin;
     Game game;
+    Stage primaryStage;
 
     public LevelController(Pane levelRoot) {
         this.levelRoot = levelRoot;
-        currentLevelNum = 0;
+        currentLevelNum = 1;
     }
-    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game) {
+    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage) {
         this.levelRoot = levelRoot;
         this.currentLevelNum = currentLevelNum;
         this.coin = coin;
         this.game = game;
+        primaryStage = stage;
     }
 
     public void nextLevel() {
         playerInstance.resetPlayerPosition(); //puts player in top left of screen
         levelRoot.getChildren().clear(); //clears previous level
         currentLevelNum += 1;
-       // levelRoot.setTranslateX(0);
-       // levelRoot.setTranslateY(0);
+        // levelRoot.setTranslateX(0);
+        // levelRoot.setTranslateY(0);
 
         platforms.clear(); //clears previous level collision information
 
         switch (currentLevelNum) {
             case 1:
                 currentLevelArray = LevelInfo.LEVEL1.clone();
+                primaryStage.show();
+                primaryStage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 2:
                 currentLevelArray = LevelInfo.LEVEL2.clone();
+                primaryStage.show();
+                primaryStage.setTitle("Level " + Integer.toString(currentLevelNum));//
                 break;
             case 3:
                 currentLevelArray = LevelInfo.LEVEL3.clone();
+                primaryStage.show();
+                primaryStage.setTitle("Level " + Integer.toString(currentLevelNum));//
                 break;
             case 4:
                 currentLevelArray = LevelInfo.LEVEL4.clone();
@@ -77,7 +85,6 @@ public class LevelController {
         renderLevel();
         coin.renderCoin(currentLevelArray);
     }
-
     public void renderLevel() {
         levelWidth = currentLevelArray[0].length() * 60;
 
