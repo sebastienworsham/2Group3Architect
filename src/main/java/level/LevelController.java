@@ -32,16 +32,18 @@ public class LevelController {
     int currentLevelNum;
     Coin coin;
     Game game;
+    Stage stage;
 
     public LevelController(Pane levelRoot) {
         this.levelRoot = levelRoot;
-        currentLevelNum = 0;
+        currentLevelNum = 1;
     }
-    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game) {
+    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage) {
         this.levelRoot = levelRoot;
         this.currentLevelNum = currentLevelNum;
         this.coin = coin;
         this.game = game;
+        this.stage = stage;
     }
 
     public void nextLevel() {
@@ -56,12 +58,19 @@ public class LevelController {
         switch (currentLevelNum) {
             case 1:
                 currentLevelArray = LevelInfo.LEVEL1.clone();
+                System.out.print(currentLevelNum);
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 2:
                 currentLevelArray = LevelInfo.LEVEL2.clone();
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 3:
                 currentLevelArray = LevelInfo.LEVEL3.clone();
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 4:
                 currentLevelArray = LevelInfo.LEVEL4.clone();
