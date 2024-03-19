@@ -15,18 +15,32 @@ import level.LevelController;
 import static main.Main.GAMEHEIGHT;
 import static main.Main.GAMEWIDTH;
 
-public class LevelScreen {
+    /**
+     * The LevelScreen class manages the level selection screen.
+     */
+    public class LevelScreen {
     StartScreen startScreen;
+    /**
+    * Creates a LevelScreen object.
+    *
+    * @param startScreen Navigates back to the start screen.
+    */
 
-    public LevelScreen(
-            StartScreen startScreen) {
+    public LevelScreen(StartScreen startScreen) {
         this.startScreen = startScreen;
     }
+    /**
+    * Displays the level selection screen.
+    *
+    * @param primaryStage The primary stage to set the scene.
+    * @param currentUser  The current user's information.
+    */
 
-    public void showLevelSelection(Stage primaryStage) {
+    public void showLevelSelection(Stage primaryStage, String[] currentUser) {
         Label selectLevelLabel = new Label("Select Level");
         selectLevelLabel.setFont(Font.font("Gameplay", FontWeight.BOLD, 24));
-        
+
+        // Buttons for each level
         Button level1Button = new Button("1");
         level1Button.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
 
@@ -43,19 +57,19 @@ public class LevelScreen {
         level5Button.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
 
         level1Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(0);
+            startScreen.setupGameScene(0, currentUser);
         });
         level2Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(1);
+            startScreen.setupGameScene(1, currentUser);
         });
         level3Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(2);
+            startScreen.setupGameScene(2, currentUser);
         });
         level4Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(3);
+            startScreen.setupGameScene(3, currentUser);
         });
         level5Button.setOnMouseClicked(event -> {
-            startScreen.setupGameScene(4);
+            startScreen.setupGameScene(4, currentUser);
         });
 
         level1Button.setOnMouseMoved(event -> {
@@ -80,7 +94,7 @@ public class LevelScreen {
             level4Button.setStyle("-fx-background-color: #78ced9");
         });
         level4Button.setOnMouseExited(event -> {
-                    level4Button.setStyle("-fx-background-color: #ffffff; ");
+            level4Button.setStyle("-fx-background-color: #ffffff; ");
         });
         level5Button.setOnMouseMoved(event -> {
             level5Button.setStyle("-fx-background-color: #78ced9");
@@ -88,10 +102,13 @@ public class LevelScreen {
         level5Button.setOnMouseExited(event -> {
             level5Button.setStyle("-fx-background-color: #ffffff");
         });
+
+        // HBox to hold the level buttons
         HBox levelButtons = new HBox(20);
         levelButtons.setAlignment(Pos.CENTER);
         levelButtons.getChildren().addAll(level1Button, level2Button, level3Button, level4Button, level5Button);
 
+        // VBox to hold the level selection layout
         VBox levelSelectionLayout = new VBox(20);
         levelSelectionLayout.setStyle("-fx-background-color: #87ce87;");
         levelSelectionLayout.setAlignment(Pos.CENTER);
