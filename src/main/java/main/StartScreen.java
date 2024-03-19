@@ -32,7 +32,14 @@ public class StartScreen {
     public static Boolean newUser = false;
     LeaderboardScreen lbScreen;
     Scene uiScene;
-
+    /**
+     * Makes a StartScreen object with the UI elements and primary stage.
+     * @param uiRoot       The root pane for UI elements.
+     * @param levelRoot    The root pane for level elements.
+     * @param playerRoot   The root pane for player elements.
+     * @param primaryStage The primary stage of the application.
+     * @param uiScene      The scene for the UI.
+     */
     public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage, Scene uiScene) {
         this.uiRoot = uiRoot;
         this.levelRoot = levelRoot;
@@ -41,19 +48,22 @@ public class StartScreen {
         this.uiScene = uiScene;
         lbScreen = new LeaderboardScreen(primaryStage, uiScene);
     }
-
+    /**
+     * Renders the start screen with buttons like new game, load game, and leaderboard.
+     * @param startScreen To render start screen.
+     */
     void renderStartScreen(StartScreen startScreen) {
         uiRoot.setStyle("-fx-background-color: #87ce87;");
         uiRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
 
-        Label gameName = new Label("ROLLING  RIFT");
+        Label gameName = new Label("ROLLING  RIFT"); //Sets the title on the game
         gameName.setFont(Font.font("Game Over", FontWeight.BOLD, 200));
         gameName.setAlignment(Pos.TOP_CENTER);
         gameName.setStyle("-fx-text-fill: black;");
 
 
-        Button newGameButton = new Button("New Game");
-        Button loadGameButton = new Button("Load Game");
+        Button newGameButton = new Button("New Game"); //Button for New game
+        Button loadGameButton = new Button("Load Game"); // Button for Load game
         Button leaderboardButton = new Button("Leaderboard");
         newGameButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
         loadGameButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
@@ -79,7 +89,7 @@ public class StartScreen {
         });
 
         newGameButton.setOnAction(event -> {
-            setupGameScene(-1, askUsername());
+            setupGameScene(0, askUsername());
         });
         loadGameButton.setOnAction(event -> {
             setupLoadScene(startScreen);
@@ -88,7 +98,7 @@ public class StartScreen {
             lbScreen.setupLbScreen();
         });
 
-        HBox hBox = new HBox();
+        HBox hBox = new HBox(); 
         hBox.setSpacing(20);
         hBox.getChildren().addAll(newGameButton, loadGameButton, leaderboardButton);
         hBox.setAlignment(Pos.CENTER);
@@ -112,7 +122,10 @@ public class StartScreen {
         layout.setBottom(bottomBox);
         uiRoot.getChildren().add(layout);
     }
-
+    /**
+     * Asks the user for a new username.
+     * @return The new username and the game statistics.
+     */
     public String[] askUsername() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setHeaderText("Enter new username");
@@ -123,7 +136,11 @@ public class StartScreen {
         currentUser = new String[] {(currentUserName), ("0"), ("0")};
         return currentUser;
     }
-
+    /**
+     * Sets up the game scene with the specified saved level number and user data.
+     * @param savedLevelNum Level number to start the game from.
+     * @param currentUser   Data of the current user.
+     */
     public void setupGameScene(int savedLevelNum, String[] currentUser) {
         bgRoot = new Pane();
         bgRoot.setStyle("-fx-background-color: #87ce87;");
@@ -134,6 +151,10 @@ public class StartScreen {
 
         game.startGame(primaryStage, savedLevelNum, currentUser);
     }
+    /**
+     * Sets up the load scene for loading the saved game.
+     * @param startScreen Handle load scene setup.
+     */
     private void setupLoadScene(StartScreen startScreen) {
         loadScreenPane = new Pane();
 
