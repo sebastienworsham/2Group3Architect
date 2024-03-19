@@ -22,7 +22,6 @@ import static main.Main.GAMEWIDTH;
     StartScreen startScreen;
     /**
     * Creates a LevelScreen object.
-    *
     * @param startScreen Navigates back to the start screen.
     */
 
@@ -31,7 +30,6 @@ import static main.Main.GAMEWIDTH;
     }
     /**
     * Displays the level selection screen.
-    *
     * @param primaryStage The primary stage to set the scene.
     * @param currentUser  The current user's information.
     */
