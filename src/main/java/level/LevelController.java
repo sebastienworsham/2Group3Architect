@@ -74,13 +74,19 @@ public class LevelController {
                 break;
             case 4:
                 currentLevelArray = LevelInfo.LEVEL4.clone();
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 5:
                 currentLevelArray = LevelInfo.LEVEL5.clone();
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             default:
                 currentLevelArray = LevelInfo.LEVEL1.clone();
                 currentLevelNum = 1;
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
         }
         renderLevel();
