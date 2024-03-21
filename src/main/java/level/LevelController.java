@@ -1,5 +1,6 @@
 package level;
 
+import entities.Coin;
 import entities.Player;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
@@ -12,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import main.Game;
 
 
 import java.io.*;
@@ -23,53 +25,72 @@ import static main.Main.*;
 import static main.StartScreen.playerInstance;
 
 public class LevelController {
-    //private int currentLevelNum;
     private static String[] currentLevelArray;
     private int levelWidth;
     private Pane levelRoot;
     public static ArrayList<Node> platforms = new ArrayList<Node>();
     int currentLevelNum;
+    Coin coin;
+    Game game;
+    Stage stage;
 
     public LevelController(Pane levelRoot) {
         this.levelRoot = levelRoot;
-        currentLevelNum = 0;
+        currentLevelNum = 1;
     }
-    public LevelController(Pane levelRoot, int currentLevelNum) {
+    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage) {
         this.levelRoot = levelRoot;
         this.currentLevelNum = currentLevelNum;
+        this.coin = coin;
+        this.game = game;
+        this.stage = stage;
     }
 
     public void nextLevel() {
         playerInstance.resetPlayerPosition(); //puts player in top left of screen
         levelRoot.getChildren().clear(); //clears previous level
         currentLevelNum += 1;
-       // levelRoot.setTranslateX(0);
-       // levelRoot.setTranslateY(0);
+        // levelRoot.setTranslateX(0);
+        // levelRoot.setTranslateY(0);
 
         platforms.clear(); //clears previous level collision information
 
         switch (currentLevelNum) {
             case 1:
                 currentLevelArray = LevelInfo.LEVEL1.clone();
+                System.out.print(currentLevelNum);
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 2:
                 currentLevelArray = LevelInfo.LEVEL2.clone();
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 3:
                 currentLevelArray = LevelInfo.LEVEL3.clone();
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 4:
                 currentLevelArray = LevelInfo.LEVEL4.clone();
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             case 5:
                 currentLevelArray = LevelInfo.LEVEL5.clone();
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
             default:
                 currentLevelArray = LevelInfo.LEVEL1.clone();
                 currentLevelNum = 1;
+                stage.show();
+                stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
         }
         renderLevel();
+        coin.renderCoin(currentLevelArray);
     }
 
     public void renderLevel() {
@@ -86,17 +107,6 @@ public class LevelController {
         }
     }
 
-    public void scrollLevel(Node player) {
-        player.translateXProperty().addListener((obs, old, newValue) -> {
-            int offset = newValue.intValue();
-            if (offset > 640 && offset < levelWidth-640) {
-                System.out.println("*"+offset);
-                levelRoot.setTranslateX(-offset + 640);
-            } else {
-                System.out.println(offset);
-            }
-        });
-    } //method scrollLevel currently not used because it isn't working
     public Node drawRectangle (int x, int y, int w, int h, Color color) {
         Rectangle entity = new Rectangle(w, h);
         entity.setTranslateX(x);
@@ -107,21 +117,15 @@ public class LevelController {
         return entity;
     }
 
-    public void saveCurrentLevel() {
-        System.out.println("saving current level");
-        File file = new File(SAVEPATH);
-        try {
-            FileWriter fw = new FileWriter(file, false);
+    public void saveScore(String[] currentUser) {
+        int temp = game.getScore();
+        temp += 1;
+        game.setScore(temp);
+        System.out.println("Score: " + game.getScore());
 
-            if(file.createNewFile()) {
-                System.out.println(SAVEPATH + "doesn't yet exist, created");
-            } else {
-                System.out.println(SAVEPATH + " already exists, appending");
-            }
-            fw.append(Integer.toString(currentLevelNum));
-            fw.close();
-        } catch (IOException e) {
-            System.err.print(e.getMessage());
-        }
+        currentUser[1] = String.valueOf(game.getScore());
+        //users.set(1, currentUser);
     }
+
+
 }

@@ -26,7 +26,7 @@ public class Player {
 
     public Player(Pane playerRoot) {
         this.playerRoot = playerRoot;
-        player = drawPlayer(50, 50, Color.LIGHTGOLDENRODYELLOW);
+        player = drawPlayer(50, 50, Color.FLORALWHITE);
         player.toFront();
     }
 
@@ -53,7 +53,7 @@ public class Player {
                 }
 
             }
-                player.setTranslateX(player.getTranslateX() + (movingRight ? 1 : -1));
+            player.setTranslateX(player.getTranslateX() + (movingRight ? 1 : -1));
         }
     }
 
@@ -89,6 +89,10 @@ public class Player {
 
         playerRoot.getChildren().add(entity);
         return entity;
+    }
+
+    public Node getPlayer() {
+        return player;
     }
 
     public static void changePVelocityY(int value) {

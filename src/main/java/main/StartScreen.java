@@ -34,7 +34,6 @@ public class StartScreen {
     Scene uiScene;
     /**
      * Makes a StartScreen object with the UI elements and primary stage.
-     *
      * @param uiRoot       The root pane for UI elements.
      * @param levelRoot    The root pane for level elements.
      * @param playerRoot   The root pane for player elements.
@@ -51,10 +50,9 @@ public class StartScreen {
     }
     /**
      * Renders the start screen with buttons like new game, load game, and leaderboard.
-     *
      * @param startScreen To render start screen.
      */
-    void renderStartScreen(StartScreen startScreen) {
+    public void renderStartScreen(StartScreen startScreen) {
         uiRoot.setStyle("-fx-background-color: #87ce87;");
         uiRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
 
@@ -100,7 +98,7 @@ public class StartScreen {
             lbScreen.setupLbScreen();
         });
 
-        HBox hBox = new HBox(); 
+        HBox hBox = new HBox();
         hBox.setSpacing(20);
         hBox.getChildren().addAll(newGameButton, loadGameButton, leaderboardButton);
         hBox.setAlignment(Pos.CENTER);
@@ -125,8 +123,7 @@ public class StartScreen {
         uiRoot.getChildren().add(layout);
     }
     /**
-     * Aks the user for a new username.
-     *
+     * Asks the user for a new username.
      * @return The new username and the game statistics.
      */
     public String[] askUsername() {
@@ -141,7 +138,6 @@ public class StartScreen {
     }
     /**
      * Sets up the game scene with the specified saved level number and user data.
-     *
      * @param savedLevelNum Level number to start the game from.
      * @param currentUser   Data of the current user.
      */
@@ -157,7 +153,6 @@ public class StartScreen {
     }
     /**
      * Sets up the load scene for loading the saved game.
-     *
      * @param startScreen Handle load scene setup.
      */
     private void setupLoadScene(StartScreen startScreen) {
@@ -169,5 +164,9 @@ public class StartScreen {
 
         primaryStage.setScene(loadScene);
         primaryStage.show();
+    }
+
+    public Scene getScene() {
+        return this.uiScene;
     }
 }

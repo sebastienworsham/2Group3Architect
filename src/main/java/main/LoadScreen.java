@@ -2,12 +2,10 @@ package main;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import level.LevelController;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.util.Scanner;
+import java.util.Arrays;
 
 import static main.Main.*;
 
@@ -17,6 +15,7 @@ public class LoadScreen {
     private Game game;
     private Pane loadScreenPane;
     int savedLevelNum;
+    String[] currentUser;
 
     public LoadScreen(Pane loadScreenPane, Stage primaryStage, Game game, StartScreen startScreen) {
         this.loadScreenPane = loadScreenPane;
@@ -30,26 +29,28 @@ public class LoadScreen {
         loadScreenPane.setStyle("-fx-background-color: black;");
         loadScreenPane.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
 
-        Button loadGameButton = new Button("Load Last Game");
-        loadGameButton.setOnAction(event -> {
-           startScreen.setupGameScene(getSaveInfo());
-        });
+        int indexInUsers = 0;
+        VBox vbox = new VBox();
+        for (String[] userInfo: users) {
+            Button loadGameButton = new Button(Arrays.toString(userInfo));
+            int finalI = indexInUsers;
+            loadGameButton.setOnAction(event -> {
+                //startScreen.setupGameScene(-1, getSaveInfo(finalI));
 
-        loadScreenPane.getChildren().add(loadGameButton);
-    }
-    public int getSaveInfo(){
-        File file = new File(SAVEPATH);
-        int saveInfo = 0;
-        try (Scanner scanner = new Scanner(file)) {
-            if (scanner.hasNext()) {
-                saveInfo = scanner.nextInt();
-                System.out.print(saveInfo);
-            }
-        } catch (
-                IOException e) {
-            System.err.println(e.getMessage());
+                LevelScreen levelScreen = new LevelScreen(startScreen);
+                levelScreen.showLevelSelection(primaryStage, getSaveInfo(finalI));
+
+            });
+            vbox.getChildren().add(loadGameButton);
+            indexInUsers ++;
         }
+        loadScreenPane.getChildren().add(vbox);
+    }
+    public String[] getSaveInfo(int i){
+        currentUser = users.get(i);
+        System.out.println("Current user: " + Arrays.toString(currentUser));
 
-        return saveInfo - 1;
+
+        return currentUser;
     }
 }

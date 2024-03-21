@@ -13,7 +13,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Main extends Application {
@@ -23,17 +27,39 @@ public class Main extends Application {
     protected Pane levelRoot = new Pane();
     protected Pane playerRoot = new Pane();
     protected Pane uiRoot = new Pane();
+    public static ArrayList<String[]> users = new ArrayList<String[]>();
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        readSaveInfo();
+        for (String[] test: users) {
+            System.out.println(Arrays.toString(test));
+        }
+
         Scene uiScene = new Scene(uiRoot, GAMEWIDTH, GAMEHEIGHT);
 
         StartScreen startScreen;
-        startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage);
+        startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage, uiScene);
         startScreen.renderStartScreen(startScreen);
 
         primaryStage.setScene(uiScene);
         primaryStage.show();
+        primaryStage.setTitle("ROLLING RIFT");
+    }
+
+    private void readSaveInfo() {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(SAVEPATH);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            users = (ArrayList<String[]>) ois.readObject();
+            fis.close();
+        } catch (IOException e) {
+            System.err.print(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
