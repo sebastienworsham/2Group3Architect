@@ -58,7 +58,6 @@ public class LevelController {
         switch (currentLevelNum) {
             case 1:
                 currentLevelArray = LevelInfo.LEVEL1.clone();
-                System.out.print(currentLevelNum);
                 stage.show();
                 stage.setTitle("Level " + Integer.toString(currentLevelNum));
                 break;
