@@ -52,7 +52,7 @@ public class StartScreen {
      * Renders the start screen with buttons like new game, load game, and leaderboard.
      * @param startScreen To render start screen.
      */
-    void renderStartScreen(StartScreen startScreen) {
+    public void renderStartScreen(StartScreen startScreen) {
         uiRoot.setStyle("-fx-background-color: #87ce87;");
         uiRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
 
@@ -164,5 +164,8 @@ public class StartScreen {
 
         primaryStage.setScene(loadScene);
         primaryStage.show();
+    }
+    public Scene getScene(){
+        return uiScene;
     }
 }
