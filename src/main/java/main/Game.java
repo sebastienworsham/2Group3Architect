@@ -47,7 +47,7 @@ public class Game {
     public void startGame(Stage primaryStage,int startLevelNum, String[] currentUser) {
         coin = new Coin(levelRoot);
         setScore(Integer.parseInt(currentUser[1]));
-        levelController = new LevelController(levelRoot, startLevelNum, coin, this);
+        levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage);
         levelController.nextLevel(currentUser);
 
         gameScene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
