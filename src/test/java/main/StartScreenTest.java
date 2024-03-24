@@ -1,3 +1,5 @@
+package main;
+
 import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -20,9 +22,6 @@ class StartScreenTest extends ApplicationTest {
     StartScreen startScreen;
     int GAMEWIDTH = 1280;
     int GAMEHEIGHT = 720;
-
-    StartScreenTest() {
-    }
 
     public void start(Stage primaryStage) throws Exception {
         Scene uiScene = new Scene(this.uiRoot, (double)this.GAMEWIDTH, (double)this.GAMEHEIGHT);

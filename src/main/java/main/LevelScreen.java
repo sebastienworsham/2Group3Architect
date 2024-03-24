@@ -20,6 +20,7 @@ import static main.Main.GAMEWIDTH;
      */
     public class LevelScreen {
     StartScreen startScreen;
+        Scene levelScene;
     /**
     * Creates a LevelScreen object.
     * @param startScreen Navigates back to the start screen.
@@ -111,11 +112,12 @@ import static main.Main.GAMEWIDTH;
         levelSelectionLayout.setStyle("-fx-background-color: #87ce87;");
         levelSelectionLayout.setAlignment(Pos.CENTER);
         levelSelectionLayout.getChildren().addAll(levelButtons);
-        Scene scene = new Scene(levelSelectionLayout, GAMEWIDTH, GAMEHEIGHT);
-
-
-        primaryStage.setScene(scene);
-
+        levelScene = new Scene(levelSelectionLayout, GAMEWIDTH, GAMEHEIGHT);
+        primaryStage.setScene(levelScene);
         primaryStage.show();
     }
+
+        public Scene getScene(){
+            return levelScene;
+        }
 }
