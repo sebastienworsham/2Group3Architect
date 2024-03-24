@@ -49,7 +49,7 @@ class LevelScreenTest extends ApplicationTest {
         Button levelOneButton = (Button)children.get(0);
         Assertions.assertEquals("1", levelOneButton.getText());
         Assertions.assertEquals(20, levelOneButton.getFont().getSize());
-        Assertions.assertEquals("Gameplay", levelOneButton.getFont().getFamily());
+        Assertions.assertEquals("Arial", levelOneButton.getFont().getFamily());
         Assertions.assertNotNull(levelOneButton.getOnMouseClicked());
         Assertions.assertNotNull(levelOneButton.getOnMouseMoved());
         Assertions.assertNotNull(levelOneButton.getOnMouseExited());
@@ -59,7 +59,7 @@ class LevelScreenTest extends ApplicationTest {
         Button levelTwoButton = (Button)children.get(1);
         Assertions.assertEquals("2", levelTwoButton.getText());
         Assertions.assertEquals(20, levelTwoButton.getFont().getSize());
-        Assertions.assertEquals("Gameplay", levelTwoButton.getFont().getFamily());
+        Assertions.assertEquals("Arial", levelTwoButton.getFont().getFamily());
         Assertions.assertNotNull(levelTwoButton.getOnMouseClicked());
         Assertions.assertNotNull(levelTwoButton.getOnMouseMoved());
         Assertions.assertNotNull(levelTwoButton.getOnMouseExited());
@@ -69,7 +69,7 @@ class LevelScreenTest extends ApplicationTest {
         Button levelThreeButton = (Button)children.get(2);
         Assertions.assertEquals("3", levelThreeButton.getText());
         Assertions.assertEquals(20, levelThreeButton.getFont().getSize());
-        Assertions.assertEquals("Gameplay", levelThreeButton.getFont().getFamily());
+        Assertions.assertEquals("Arial", levelThreeButton.getFont().getFamily());
         Assertions.assertNotNull(levelThreeButton.getOnMouseClicked());
         Assertions.assertNotNull(levelThreeButton.getOnMouseMoved());
         Assertions.assertNotNull(levelThreeButton.getOnMouseExited());
@@ -79,7 +79,7 @@ class LevelScreenTest extends ApplicationTest {
         Button levelFourButton = (Button)children.get(3);
         Assertions.assertEquals("4", levelFourButton.getText());
         Assertions.assertEquals(20, levelFourButton.getFont().getSize());
-        Assertions.assertEquals("Gameplay", levelFourButton.getFont().getFamily());
+        Assertions.assertEquals("Arial", levelFourButton.getFont().getFamily());
         Assertions.assertNotNull(levelFourButton.getOnMouseClicked());
         Assertions.assertNotNull(levelFourButton.getOnMouseMoved());
         Assertions.assertNotNull(levelFourButton.getOnMouseExited());
@@ -89,7 +89,7 @@ class LevelScreenTest extends ApplicationTest {
         Button levelFiveButton = (Button)children.get(4);
         Assertions.assertEquals("5", levelFiveButton.getText());
         Assertions.assertEquals(20, levelFiveButton.getFont().getSize());
-        Assertions.assertEquals("Gameplay", levelFiveButton.getFont().getFamily());
+        Assertions.assertEquals("Arial", levelFiveButton.getFont().getFamily());
         Assertions.assertNotNull(levelFiveButton.getOnMouseClicked());
         Assertions.assertNotNull(levelFiveButton.getOnMouseMoved());
         Assertions.assertNotNull(levelFiveButton.getOnMouseExited());

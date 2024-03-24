@@ -40,8 +40,8 @@ class StartScreenTest extends ApplicationTest {
         List<Node> topPaneBox = ((HBox)topPane).getChildren();
         Assertions.assertEquals("ROLLING  RIFT", ((Label)topPaneBox.get(0)).getText());
         List<Node> box = ((HBox)centerPanel).getChildren();
-        Assertions.assertEquals("New Game", ((Button)box.get(0)).getText());
-        Assertions.assertEquals("Load Game", ((Button)box.get(1)).getText());
-        Assertions.assertEquals("Leaderboard", ((Button)box.get(2)).getText());
+        Assertions.assertEquals("NEW GAME", ((Button)box.get(0)).getText());
+        Assertions.assertEquals("LOAD GAME", ((Button)box.get(1)).getText());
+        Assertions.assertEquals("LEADERBOARD", ((Button)box.get(2)).getText());
     }
 }
