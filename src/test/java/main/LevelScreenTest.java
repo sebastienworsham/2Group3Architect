@@ -94,19 +94,5 @@ class LevelScreenTest extends ApplicationTest {
         Assertions.assertNotNull(levelFiveButton.getOnMouseMoved());
         Assertions.assertNotNull(levelFiveButton.getOnMouseExited());
         Assertions.assertNull(levelFiveButton.getOnMouseDragEntered());
-
-
-
-
-
-
-
-
-
-        //Assertions.assertEquals("Load Game", ((Button)children.get(1)).getText());
-        //Assertions.assertEquals("Leaderboard", ((Button)children.get(2)).getText());
-        //Assertions.assertEquals("Leaderboard", ((Button)children.get(3)).getText());
-        //Assertions.assertEquals("Leaderboard", ((Button)children.get(4)).getText());
-
     }
 }
