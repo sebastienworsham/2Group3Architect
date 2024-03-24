@@ -1,9 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
-
 import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.Parent;
