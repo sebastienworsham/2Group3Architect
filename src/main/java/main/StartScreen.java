@@ -57,17 +57,16 @@ public class StartScreen {
         uiRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
 
         Label gameName = new Label("ROLLING  RIFT"); //Sets the title on the game
-        gameName.setFont(Font.font("Game Over", FontWeight.BOLD, 200));
+        gameName.setId("fancytext");
         gameName.setAlignment(Pos.TOP_CENTER);
-        gameName.setStyle("-fx-text-fill: black;");
 
 
-        Button newGameButton = new Button("New Game"); //Button for New game
-        Button loadGameButton = new Button("Load Game"); // Button for Load game
-        Button leaderboardButton = new Button("Leaderboard");
-        newGameButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
-        loadGameButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
-        leaderboardButton.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
+        Button newGameButton = new Button("NEW GAME"); //Button for New game
+        Button loadGameButton = new Button("LOAD GAME"); // Button for Load game
+        Button leaderboardButton = new Button("LEADERBOARD");
+        newGameButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        loadGameButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        leaderboardButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
         newGameButton.setOnMouseMoved(event -> {
             newGameButton.setStyle("-fx-background-color: #78ced9; ");

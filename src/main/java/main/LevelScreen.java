@@ -37,23 +37,23 @@ import static main.Main.GAMEWIDTH;
 
     public void showLevelSelection(Stage primaryStage, String[] currentUser) {
         Label selectLevelLabel = new Label("Select Level");
-        selectLevelLabel.setFont(Font.font("Gameplay", FontWeight.BOLD, 24));
+        selectLevelLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 
         // Buttons for each level
         Button level1Button = new Button("1");
-        level1Button.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
+        level1Button.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
         Button level2Button = new Button("2");
-        level2Button.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
+        level2Button.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
         Button level3Button = new Button("3");
-        level3Button.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
+        level3Button.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
         Button level4Button = new Button("4");
-        level4Button.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
+        level4Button.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
         Button level5Button = new Button("5");
-        level5Button.setFont(Font.font("Gameplay", FontWeight.BOLD, 20));
+        level5Button.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
         level1Button.setOnMouseClicked(event -> {
             startScreen.setupGameScene(0, currentUser);
