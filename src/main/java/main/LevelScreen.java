@@ -117,7 +117,7 @@ import static main.Main.GAMEWIDTH;
         primaryStage.show();
     }
 
-        public Scene getScene(){
+    public Scene getScene(){
             return levelScene;
         }
 }
