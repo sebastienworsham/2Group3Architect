@@ -1,0 +1,7 @@
+#fancytext {
+    -fx-font: 100px SansSerif;
+    -fx-text-fill: linear-gradient(from 30% 40% to 100% 100%, black, #000000);
+    -fx-font-weight: bold;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
