@@ -38,6 +38,10 @@ public class Main extends Application {
         }
 
         Scene uiScene = new Scene(uiRoot, GAMEWIDTH, GAMEHEIGHT);
+        //uiScene.getStylesheets().add("main/resources/styles.css");
+        // Load the CSS file
+       uiScene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
 
         StartScreen startScreen;
         startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage, uiScene);
