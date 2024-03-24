@@ -67,15 +67,16 @@ public class Game {
         timer.start();
     }
     private void gameLoop() {
-        if (isPressed(KeyCode.SPACE)) {
+        if (isPressed(KeyCode.SPACE) || isPressed(KeyCode.UP)) {
             playerInstance.jumpPlayer();
         }
-        if (isPressed(KeyCode.A)) {
+        if (isPressed(KeyCode.A) || isPressed(KeyCode.LEFT)) {
             playerInstance.movePlayerX(-5);
         }
-        if (isPressed(KeyCode.D)) {
+        if (isPressed(KeyCode.D) || isPressed(KeyCode.RIGHT)) {
             playerInstance.movePlayerX(5);
         }
+
         if (Player.pVelocityY < 10) {
             Player.changePVelocityY(1);
         }
