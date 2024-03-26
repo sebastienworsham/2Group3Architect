@@ -1,22 +1,10 @@
 package entities;
 
-import javafx.animation.AnimationTimer;
-import javafx.animation.ParallelTransition;
-import javafx.application.Application;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import level.LevelController;
-import main.Game;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Player {
     private Pane playerRoot;
@@ -36,6 +24,14 @@ public class Player {
             canJump = false;
         }
     }
+    public String canPlayerJump() {
+        return String.valueOf(canJump);
+    }
+    public int getTranslateX() {
+        double translateX = player.getTranslateX();
+        return (int) translateX;
+    }
+
     public void movePlayerX(int moveX) {
         boolean movingRight = moveX > 0;
 
