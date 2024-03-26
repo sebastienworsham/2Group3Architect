@@ -46,7 +46,7 @@ public class Game {
     }
 
     public void startGame(Stage primaryStage,int startLevelNum, String[] currentUser) {
-        coin = new Coin(levelRoot);
+        coin = new Coin(levelRoot, 100,100);
         setScore(Integer.parseInt(currentUser[1]));
         levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage);
         levelController.nextLevel(currentUser);
