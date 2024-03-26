@@ -17,7 +17,9 @@ public class Player {
         player = drawPlayer(50, 50, Color.LIGHTGOLDENRODYELLOW);
         player.toFront();
     }
-
+    public Pane getPlayerRoot() {
+        return playerRoot;
+    }
     public void jumpPlayer() {
         if (canJump) {
             pVelocityY -= 30;
