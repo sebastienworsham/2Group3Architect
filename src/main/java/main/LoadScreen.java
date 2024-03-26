@@ -49,8 +49,6 @@ public class LoadScreen {
     public String[] getSaveInfo(int i){
         currentUser = users.get(i);
         System.out.println("Current user: " + Arrays.toString(currentUser));
-
-
         return currentUser;
     }
 }
