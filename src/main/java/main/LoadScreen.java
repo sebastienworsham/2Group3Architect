@@ -15,7 +15,7 @@ public class LoadScreen {
     private Game game;
     private Pane loadScreenPane;
     int savedLevelNum;
-    String[] currentUser;
+
 
     public LoadScreen(Pane loadScreenPane, Stage primaryStage, Game game, StartScreen startScreen) {
         this.loadScreenPane = loadScreenPane;
@@ -31,14 +31,14 @@ public class LoadScreen {
 
         int indexInUsers = 0;
         VBox vbox = new VBox();
-        for (String[] userInfo: users) {
-            Button loadGameButton = new Button(Arrays.toString(userInfo));
-            int finalI = indexInUsers;
+        for (String key: users.keySet()) {
+            Button loadGameButton = new Button(key);
+
             loadGameButton.setOnAction(event -> {
-                //startScreen.setupGameScene(-1, getSaveInfo(finalI));
+                //startScreen.setupGameScene(0, getSaveInfo(finalI));
 
                 LevelScreen levelScreen = new LevelScreen(startScreen);
-                levelScreen.showLevelSelection(primaryStage, getSaveInfo(finalI));
+                levelScreen.showLevelSelection(primaryStage, getSaveInfo(key));
 
             });
             vbox.getChildren().add(loadGameButton);
@@ -46,10 +46,12 @@ public class LoadScreen {
         }
         loadScreenPane.getChildren().add(vbox);
     }
-    public String[] getSaveInfo(int i){
-        currentUser = users.get(i);
+    public String[] getSaveInfo(String key){
+        String[] currentUser = new String[] {
+                key,
+                String.valueOf(savedLevelNum)
+        };
         System.out.println("Current user: " + Arrays.toString(currentUser));
-
 
         return currentUser;
     }

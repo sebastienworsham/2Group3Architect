@@ -19,6 +19,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Main extends Application {
     public static final int GAMEWIDTH = 1280;
@@ -27,14 +28,16 @@ public class Main extends Application {
     protected Pane levelRoot = new Pane();
     protected Pane playerRoot = new Pane();
     protected Pane uiRoot = new Pane();
-    public static ArrayList<String[]> users = new ArrayList<String[]>();
+    //public static ArrayList<String[]> users = new ArrayList<String[]>();
+    public static Map<String, Integer> users = new HashMap<>();
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         readSaveInfo();
-        for (String[] test: users) {
-            System.out.println(Arrays.toString(test));
+        for (Map.Entry<String, Integer> entry : users.entrySet()) {
+            System.out.print("Username: " + entry.getKey());
+            System.out.println(", Score: " + entry.getValue());
         }
 
         Scene uiScene = new Scene(uiRoot, GAMEWIDTH, GAMEHEIGHT);
@@ -57,7 +60,7 @@ public class Main extends Application {
             fis = new FileInputStream(SAVEPATH);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            users = (ArrayList<String[]>) ois.readObject();
+            users = (HashMap<String, Integer>) ois.readObject();
             fis.close();
         } catch (IOException e) {
             System.err.print(e.getMessage());
@@ -65,4 +68,6 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
     }
+
+
 }

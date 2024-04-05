@@ -90,26 +90,18 @@ public class Game {
 
     private void saveOnClose() {
         if (StartScreen.newUser) {
-            users.add(new String[] { StartScreen.currentUserName, String.valueOf(score)});
-            try {
-                FileOutputStream fos = new FileOutputStream(SAVEPATH);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
+            users.put(StartScreen.currentUserName, score);
 
-                oos.writeObject(users);
-                oos.close();
-            } catch (IOException e) {
-                System.err.print(e.getMessage());
-            }
-        } else {
-            try {
-                FileOutputStream fos = new FileOutputStream(SAVEPATH);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
+        }
 
-                oos.writeObject(users);
-                oos.close();
-            } catch (IOException e) {
-                System.err.print(e.getMessage());
-            }
+        try {
+            FileOutputStream fos = new FileOutputStream(SAVEPATH);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            oos.writeObject(users);
+            oos.close();
+        } catch (IOException e) {
+            System.err.print(e.getMessage());
         }
     }
 
