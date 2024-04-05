@@ -14,17 +14,26 @@ public class Coin {
     Random random = new Random();
     Pane levelRoot;
     Circle circle;
-    public Coin(Pane levelRoot) {
+    int xAxis;
+    int yAxis;
+    public Coin(Pane levelRoot, int xCords, int yCords) {
         this.levelRoot = levelRoot;
+        xAxis = xCords;
+        yAxis = yCords;
     }
 
     public void renderCoin(String[] currentLevelArray) {
         int rand1 = random.nextInt(1000);
         int rand2 = random.nextInt(1000);
 
-        drawCircle(GAMEWIDTH-100, GAMEHEIGHT-100);
+        drawCircle(GAMEWIDTH-xAxis, GAMEHEIGHT-yAxis);
     }
-
+    public int getXAxis() {
+        return xAxis;
+    }
+    public int getYAxis() {
+        return yAxis;
+    }
     public void drawCircle(int x, int y) {
         circle = new Circle(30);
         circle.setTranslateX(x);

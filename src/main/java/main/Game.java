@@ -25,16 +25,17 @@ import static main.Main.*;
 import static main.StartScreen.playerInstance;
 
 public class Game {
+
     private Pane levelRoot;
-    public LevelController levelController;
+    public static LevelController levelController;
     Scene gameScene;
-    private HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
-    private boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
+    private static HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
+    private static boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
     boolean nKeyPressed;
     boolean mKeyPressed;
-    Coin coin;
+    static Coin coin;
     int score;
-    String[] currentUser;
+    static String[] currentUser;
 
 
 
@@ -45,7 +46,7 @@ public class Game {
     }
 
     public void startGame(Stage primaryStage,int startLevelNum, String[] currentUser) {
-        coin = new Coin(levelRoot);
+        coin = new Coin(levelRoot, 100,100);
         setScore(Integer.parseInt(currentUser[1]));
         levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage);
         levelController.nextLevel(currentUser);
@@ -87,7 +88,15 @@ public class Game {
             levelController.saveScore(currentUser);
         }
     }
-
+    public static void triggerJumpAction() {
+        // Simulate pressing the jump key
+        keys.put(KeyCode.SPACE, true);
+    }
+    public static void ifSpacePressed() {
+        if (isPressed(KeyCode.SPACE) || isPressed(KeyCode.UP)) {
+            playerInstance.jumpPlayer();
+        }
+    }
     private void saveOnClose() {
         if (StartScreen.newUser) {
             users.put(StartScreen.currentUserName, score);

@@ -31,7 +31,6 @@ public class Main extends Application {
     //public static ArrayList<String[]> users = new ArrayList<String[]>();
     public static Map<String, Integer> users = new HashMap<>();
 
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         readSaveInfo();
@@ -43,8 +42,7 @@ public class Main extends Application {
         Scene uiScene = new Scene(uiRoot, GAMEWIDTH, GAMEHEIGHT);
         //uiScene.getStylesheets().add("main/resources/styles.css");
         // Load the CSS file
-       uiScene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
-
+        uiScene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
         StartScreen startScreen;
         startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage, uiScene);
