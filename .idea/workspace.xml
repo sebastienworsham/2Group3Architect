@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d833d84-dd71-4f73-9250-b08c463b7a4a" name="Changes" comment="Added Leaderboard">
+    <list default="true" id="8d833d84-dd71-4f73-9250-b08c463b7a4a" name="Changes" comment="Added NetworkingTest">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fonts/Gameplay.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/level/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/level/LevelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/LevelScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/LevelScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/save.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/save.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,13 +59,17 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.IOStreamsTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.Player.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.IOStreamsTest.testIOStreams.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NetworkingTest.testNetworking.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/sebastien/IdeaProjects/2Group3Architect&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -75,7 +80,25 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/fonts" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="IOStreamsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.IOStreamsTest" />
+      <module name="Platformer4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Platformer4" />
@@ -85,6 +108,38 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IOStreamsTest.testIOStreams" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Platformer4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main" />
+      <option name="MAIN_CLASS_NAME" value="main.IOStreamsTest" />
+      <option name="METHOD_NAME" value="testIOStreams" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NetworkingTest.testNetworking" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Platformer4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main" />
+      <option name="MAIN_CLASS_NAME" value="main.NetworkingTest" />
+      <option name="METHOD_NAME" value="testNetworking" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -100,6 +155,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.IOStreamsTest.testIOStreams" />
+        <item itemvalue="JUnit.NetworkingTest.testNetworking" />
+        <item itemvalue="Application.IOStreamsTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -139,6 +201,13 @@
       <workItem from="1710286748429" duration="19000" />
       <workItem from="1710286989728" duration="1215000" />
       <workItem from="1710291703826" duration="2774000" />
+      <workItem from="1711316525436" duration="1234000" />
+      <workItem from="1711495016818" duration="243000" />
+      <workItem from="1711749209187" duration="1585000" />
+      <workItem from="1711753148605" duration="224000" />
+      <workItem from="1712350930496" duration="388000" />
+      <workItem from="1712351550225" duration="1658000" />
+      <workItem from="1712357023015" duration="790000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -180,7 +249,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710206102854</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added IOStreamsTest">
+      <option name="closed" value="true" />
+      <created>1711317193631</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711317193631</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added NetworkingTest">
+      <option name="closed" value="true" />
+      <created>1711317762750</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711317762750</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +300,9 @@
     <MESSAGE value="Level changes (still glitchy)" />
     <MESSAGE value="Added score" />
     <MESSAGE value="Added Leaderboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Leaderboard" />
+    <MESSAGE value="Added IOStreamsTest" />
+    <MESSAGE value="Added NetworkingTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added NetworkingTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -230,5 +317,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
