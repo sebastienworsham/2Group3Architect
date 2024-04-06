@@ -19,14 +19,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
 import static main.Main.*;
 
-public class LeaderboardScreen {
+public class LeaderboardScreen<K, V> {
     Stage primaryStage;
     private Pane lbPane;
     VBox vbox;
     Scene uiScene;
     Scene lbScene;
+    TreeMap<Integer, String> leaderBoard;
     public LeaderboardScreen(Stage primaryStage, Scene uiScene) {
         this.primaryStage = primaryStage;
         this.uiScene = uiScene;
@@ -74,19 +80,32 @@ public class LeaderboardScreen {
 
     private void renderLeaderboard() {
         URL url = null;
+        leaderBoard = new TreeMap<>(Collections.reverseOrder());
 
         try {
             url = new URL("https://sebastienworsham.github.io/LeaderBoardInfo/leaderboardSaveInfo.csv");
             URLConnection connection = url.openConnection();
             InputStream in = connection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            Scanner scanner = new Scanner(in);
 
-            String line;
-            while((line = br.readLine()) != null) {
-                vbox.getChildren().addAll(new Button(line));
+            while(scanner.hasNext()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+
+                int key = Integer.parseInt(parts[1].trim());
+                String value = parts[0].trim();
+                leaderBoard.put(key, value);
+            }
+            for (Map.Entry<Integer, String> entry : leaderBoard.entrySet()) {
+                String text = (entry.getKey() + ", " + entry.getValue());
+                vbox.getChildren().addAll(new Button(text));
+
+                System.out.print((int) entry.getKey() + (String) entry.getValue());
             }
 
-            br.close();
+
+
+            scanner.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
