@@ -60,7 +60,6 @@ public class StartScreen {
         gameName.setId("fancytext");
         gameName.setAlignment(Pos.TOP_CENTER);
 
-
         Button newGameButton = new Button("NEW GAME"); //Button for New game
         Button loadGameButton = new Button("LOAD GAME"); // Button for Load game
         Button leaderboardButton = new Button("LEADERBOARD");
@@ -101,7 +100,6 @@ public class StartScreen {
         hBox.setSpacing(20);
         hBox.getChildren().addAll(newGameButton, loadGameButton, leaderboardButton);
         hBox.setAlignment(Pos.CENTER);
-
 
         HBox topBox = new HBox();
         topBox.setFillHeight(true);

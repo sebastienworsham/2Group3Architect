@@ -102,11 +102,9 @@ public class LeaderboardScreen<K, V> {
 
                 System.out.print((int) entry.getKey() + (String) entry.getValue());
             }
-
-
-
             scanner.close();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

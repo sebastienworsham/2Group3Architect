@@ -28,7 +28,7 @@ public class Main extends Application {
     protected Pane levelRoot = new Pane();
     protected Pane playerRoot = new Pane();
     protected Pane uiRoot = new Pane();
-    //public static ArrayList<String[]> users = new ArrayList<String[]>();
+    // Users is a HashMap which stores the player name and their current level
     public static Map<String, Integer> users = new HashMap<>();
 
     @Override
