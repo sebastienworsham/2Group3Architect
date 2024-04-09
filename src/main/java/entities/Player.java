@@ -1,16 +1,25 @@
 package entities;
 
 import javafx.scene.Node;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import level.LevelController;
+
+import java.util.HashMap;
+
+import main.Game;
+import main.Game.*;
+import static main.StartScreen.playerInstance;
 
 public class Player {
     private Pane playerRoot;
     public Node player;
     private boolean canJump = true;
     public static int pVelocityY;
+    private static HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
+    private static boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
 
     public Player(Pane playerRoot) {
         this.playerRoot = playerRoot;
@@ -43,13 +52,11 @@ public class Player {
                     if (movingRight) {
                         player.setTranslateX(player.getTranslateX() - 3);
                         return; //if collision detected return
-                    }
-                    else {
+                    } else {
                         player.setTranslateX(player.getTranslateX() + 3);
                         return; //if collision detected return
                     }
                 }
-
             }
                 player.setTranslateX(player.getTranslateX() + (movingRight ? 1 : -1));
         }
@@ -57,7 +64,6 @@ public class Player {
 
     public void movePlayerY(int pVelocityY) {
         boolean movingDown = pVelocityY > 0; //if velocity is positive player is moving down, otherwise player is moving up
-
         for (int i=0; i<Math.abs(pVelocityY); i++) {
             for (Node platform: LevelController.platforms) {
                 if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
@@ -67,6 +73,18 @@ public class Player {
                         return;
                     } else {
                         player.setTranslateY(player.getTranslateY() + 2);
+                        return;
+                    }
+                }
+            }
+            for (Node jumpThroughPlatform: LevelController.jumpThroughPlatforms) {
+                if (player.getBoundsInParent().intersects(jumpThroughPlatform.getBoundsInParent())) {
+                    if (pVelocityY == 3) {
+                        player.setTranslateY(player.getTranslateY() + 5);
+                        return;
+                    }
+                    else {
+                        player.setTranslateY(player.getTranslateY() - 1);
                         return;
                     }
                 }

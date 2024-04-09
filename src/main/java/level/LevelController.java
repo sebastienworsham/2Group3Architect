@@ -29,6 +29,7 @@ public class LevelController {
     private int levelWidth;
     private Pane levelRoot;
     public static ArrayList<Node> platforms = new ArrayList<Node>();
+    public static ArrayList<Node> jumpThroughPlatforms = new ArrayList<Node>();
     int currentLevelNum;
     Coin coin;
     Game game;
@@ -146,6 +147,10 @@ public class LevelController {
                 if(currentLine.charAt(j) == '1') {
                     Node platform = drawRectangle(j*60, i*60, 60, 60, Color.BLACK);
                     platforms.add(platform);
+                }
+                if(currentLine.charAt(j) == '2') {
+                    Node jumpThroughPlatform = drawRectangle(j*60,i*60,60,20, Color.BLACK);
+                    jumpThroughPlatforms.add(jumpThroughPlatform);
                 }
             }
         }

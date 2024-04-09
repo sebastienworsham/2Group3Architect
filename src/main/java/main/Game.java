@@ -33,6 +33,7 @@ public class Game {
     private static boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
     boolean nKeyPressed;
     boolean mKeyPressed;
+    static boolean checkJumpThroughPlatform = false;
     static Coin coin;
     int score;
     static String[] currentUser;
@@ -77,12 +78,19 @@ public class Game {
         if (isPressed(KeyCode.D) || isPressed(KeyCode.RIGHT)) {
             playerInstance.movePlayerX(5);
         }
-
+        if (isPressed(KeyCode.S) || isPressed(KeyCode.DOWN)) {
+            checkJumpThroughPlatform = true;
+        } else {
+            checkJumpThroughPlatform = false;
+        }
         if (Player.pVelocityY < 10) {
             Player.changePVelocityY(1);
         }
         playerInstance.movePlayerY(Player.pVelocityY);
 
+        if (checkJumpThroughPlatform) {
+            playerInstance.movePlayerY(3);
+        }
         if (coin.isTouchingPlayer(playerInstance.getPlayer())) {
             levelController.nextLevel(currentUser);
             levelController.saveScore(currentUser);
@@ -113,7 +121,9 @@ public class Game {
             System.err.print(e.getMessage());
         }
     }
-
+    public static boolean getCheckIfJumpPlatform(){
+        return checkJumpThroughPlatform;
+    }
     public int getScore() {
         return score;
     }
