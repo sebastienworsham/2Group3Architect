@@ -100,6 +100,7 @@ public class LevelController {
         // levelRoot.setTranslateY(0);
 
         platforms.clear(); //clears previous level collision information
+        jumpThroughPlatforms.clear();
 
         switch (currentLevelNum) {
             case 1:
