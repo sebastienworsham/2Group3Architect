@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import main.leaderboard.LBProcessor;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -28,6 +29,7 @@ import static main.Main.*;
 
 public class LeaderboardScreen<K, V> {
     Stage primaryStage;
+    LBProcessor lbp;
     private Pane lbPane;
     VBox vbox;
     Scene uiScene;
@@ -42,6 +44,8 @@ public class LeaderboardScreen<K, V> {
         lbPane.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
         lbScene = new Scene(lbPane, GAMEWIDTH, GAMEHEIGHT);
         vbox = new VBox(40);
+
+        lbp = new LBProcessor(vbox);
     }
 
     public void setupLbScreen() {
@@ -90,19 +94,10 @@ public class LeaderboardScreen<K, V> {
 
             while(scanner.hasNext()) {
                 String line = scanner.nextLine();
-                String[] parts = line.split(",");
-
-                int key = Integer.parseInt(parts[1].trim());
-                String value = parts[0].trim();
-                leaderBoard.put(key, value);
-            }
-            for (Map.Entry<Integer, String> entry : leaderBoard.entrySet()) {
-                String text = (entry.getKey() + ", " + entry.getValue());
-                vbox.getChildren().addAll(new Button(text));
-
-                System.out.print((int) entry.getKey() + (String) entry.getValue());
+                lbp.process(line); /** Parses input and inserts into TreeNode */
             }
             scanner.close();
+            lbp.printTopScorers(5); /** Prints the top users in leaderboard. Change count to change the amount printed */
         }
         catch (Exception e) {
             throw new RuntimeException(e);
