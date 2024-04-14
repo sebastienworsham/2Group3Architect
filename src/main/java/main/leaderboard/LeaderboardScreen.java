@@ -1,4 +1,4 @@
-package main;
+package main.leaderboard;
 import entities.Player;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
