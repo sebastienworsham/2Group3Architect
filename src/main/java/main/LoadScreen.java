@@ -54,7 +54,7 @@ public class LoadScreen {
         loadGameButton.setOnAction(event -> {
             // Users is a hashmap of player name and their level
             // users.get(playername) will return the value of the level stored for the player
-            startScreen.setupGameScene(users.get(playerName), getSaveInfo(playerName));
+            startScreen.setupGameScene(users.get(playerName), getPlayerInformation(playerName));
         });
 
         box.getChildren().add(loadGameButton);
@@ -62,12 +62,25 @@ public class LoadScreen {
     }
 
 
-    public String[] getSaveInfo(String key){
+    public String[] getPlayerInformation(String key){
         String[] currentUser = new String[] {
                 key,
-                users.get(key).toString()
+                getUserLevelByLinearSearch(key)
         };
 
         return currentUser;
     }
-}
+
+    private  String getUserLevelByLinearSearch(String playerName)
+    {
+        String levelOfGame = "0";
+        for (String key : users.keySet()) {
+            if(key ==  playerName){
+                levelOfGame = users.get(key).toString();
+                break;
+            }
+        }
+        System.out.println(playerName + ":" + levelOfGame);
+        return levelOfGame;
+    }
+    }
