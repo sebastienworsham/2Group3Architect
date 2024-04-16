@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import level.LevelController;
+import entities.Player;
 
 import java.util.HashMap;
 
@@ -42,7 +43,6 @@ public class Player {
         double translateX = player.getTranslateX();
         return (int) translateX;
     }
-
     public void movePlayerX(int moveX) {
         boolean movingRight = moveX > 0;
 
@@ -81,12 +81,19 @@ public class Player {
                 if (player.getBoundsInParent().intersects(jumpThroughPlatform.getBoundsInParent())) {
                     if (pVelocityY == 3) {
                         player.setTranslateY(player.getTranslateY() + 5);
+                        canJump = false;
                         return;
                     }
                     else {
                         player.setTranslateY(player.getTranslateY() - 1);
+                        canJump = true;
                         return;
                     }
+                }
+            }
+            for (Node resetBlock: LevelController.resetBlocks) {
+                if (player.getBoundsInParent().intersects(resetBlock.getBoundsInParent())) {
+                    playerInstance.resetPlayerPosition(); //puts player in top left of screen
                 }
             }
             player.setTranslateY(player.getTranslateY() + (movingDown ? 1 : -1));

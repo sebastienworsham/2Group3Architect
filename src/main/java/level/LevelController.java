@@ -30,6 +30,7 @@ public class LevelController {
     private Pane levelRoot;
     public static ArrayList<Node> platforms = new ArrayList<Node>();
     public static ArrayList<Node> jumpThroughPlatforms = new ArrayList<Node>();
+    public static ArrayList<Node> resetBlocks = new ArrayList<Node>();
     int currentLevelNum;
     Coin coin;
     Game game;
@@ -55,6 +56,8 @@ public class LevelController {
        // levelRoot.setTranslateY(0);
 
         platforms.clear(); //clears previous level collision information
+        jumpThroughPlatforms.clear(); //clears previous level collision information
+        resetBlocks.clear(); //clears previous level collision information
 
         switch (currentLevelNum) {
             case 1:
@@ -100,7 +103,8 @@ public class LevelController {
         // levelRoot.setTranslateY(0);
 
         platforms.clear(); //clears previous level collision information
-        jumpThroughPlatforms.clear();
+        jumpThroughPlatforms.clear(); //clears previous level collision information
+        resetBlocks.clear(); //clears previous level collision information
 
         switch (currentLevelNum) {
             case 1:
@@ -152,6 +156,10 @@ public class LevelController {
                 if(currentLine.charAt(j) == '2') {
                     Node jumpThroughPlatform = drawRectangle(j*60,i*60,60,20, Color.BLACK);
                     jumpThroughPlatforms.add(jumpThroughPlatform);
+                }
+                if(currentLine.charAt(j) == '3') {
+                    Node resetBlock = drawRectangle(j*60, i*60+40, 60, 20, Color.RED);
+                    resetBlocks.add(resetBlock);
                 }
             }
         }
