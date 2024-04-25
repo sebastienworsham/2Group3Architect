@@ -33,6 +33,9 @@ public class Player {
     public void jumpPlayer() {
         if (canJump) {
             pVelocityY -= 30;
+            if (pVelocityY < -20) {
+                pVelocityY = -20;
+            }
             canJump = false;
         }
     }
@@ -73,6 +76,7 @@ public class Player {
                         return;
                     } else {
                         player.setTranslateY(player.getTranslateY() + 2);
+                        playerInstance.pVelocityY = 0;
                         return;
                     }
                 }
@@ -105,7 +109,7 @@ public class Player {
     }
 
     public Node drawPlayer (int x, int y, Color color) {
-        Circle entity = new Circle(30, color);
+        Circle entity = new Circle(20, color);
         entity.setTranslateX(x);
         entity.setTranslateY(y);
         entity.setFill(color);
