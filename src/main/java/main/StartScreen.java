@@ -32,6 +32,7 @@ public class StartScreen {
     String[] currentUser;
     public static Boolean newUser = false;
     LeaderboardScreen lbScreen;
+    UserService userService;
     Scene uiScene;
     /**
      * Makes a StartScreen object with the UI elements and primary stage.
@@ -41,13 +42,14 @@ public class StartScreen {
      * @param primaryStage The primary stage of the application.
      * @param uiScene      The scene for the UI.
      */
-    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage, Scene uiScene) {
+    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage, Scene uiScene, UserService userService) {
         this.uiRoot = uiRoot;
         this.levelRoot = levelRoot;
         this.playerRoot = playerRoot;
         this.primaryStage = primaryStage;
         this.uiScene = uiScene;
         lbScreen = new LeaderboardScreen(primaryStage, uiScene);
+        this.userService =userService;
     }
     /**
      * Renders the start screen with buttons like new game, load game, and leaderboard.
@@ -128,7 +130,9 @@ public class StartScreen {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setHeaderText("Enter new username");
         currentUserName = dialog.showAndWait().orElse(null);
-
+        // save the new user in DB with default level of 0
+        userService.saveUser(new User(currentUserName,0));
+        users = userService.getAllUsers();
         newUser = true;
 
         currentUser = new String[] {(currentUserName), ("0"), ("0")};
@@ -144,7 +148,7 @@ public class StartScreen {
         bgRoot.setStyle("-fx-background-color: #87ce87;");
         bgRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
         Scene gameScene = new Scene(new Pane(bgRoot, playerRoot, levelRoot), GAMEWIDTH, GAMEHEIGHT);
-        game = new Game(levelRoot, gameScene, currentUser);
+        game = new Game(levelRoot, gameScene, currentUser, userService);
         playerInstance = new Player(playerRoot);
 
         game.startGame(primaryStage, savedLevelNum, currentUser);
