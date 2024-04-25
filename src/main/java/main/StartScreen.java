@@ -14,10 +14,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import main.leaderboard.LeaderboardScreen;
-import main.leaderboard.LeaderboardScreen;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.io.*;
 
 import static main.Main.*;
 
@@ -35,7 +33,6 @@ public class StartScreen {
     public static Boolean newUser = false;
     LeaderboardScreen lbScreen;
     Scene uiScene;
-    Database db;
     /**
      * Makes a StartScreen object with the UI elements and primary stage.
      * @param uiRoot       The root pane for UI elements.
@@ -44,15 +41,13 @@ public class StartScreen {
      * @param primaryStage The primary stage of the application.
      * @param uiScene      The scene for the UI.
      */
-    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage, Scene uiScene) throws SQLException {
+    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage, Scene uiScene) {
         this.uiRoot = uiRoot;
         this.levelRoot = levelRoot;
         this.playerRoot = playerRoot;
         this.primaryStage = primaryStage;
         this.uiScene = uiScene;
         lbScreen = new LeaderboardScreen(primaryStage, uiScene);
-
-        db = new Database();
     }
     /**
      * Renders the start screen with buttons like new game, load game, and leaderboard.
@@ -93,15 +88,7 @@ public class StartScreen {
         });
 
         newGameButton.setOnAction(event -> {
-            try {
-                setupGameScene(0, askUsername());
-            } catch (SQLException e) {
-                if ( e instanceof SQLIntegrityConstraintViolationException) {
-                    System.err.println("Username already exists");
-                } else {
-                    throw new RuntimeException(e);
-                }
-            }
+            setupGameScene(0, askUsername());
         });
         loadGameButton.setOnAction(event -> {
             setupLoadScene(startScreen);
@@ -137,7 +124,7 @@ public class StartScreen {
      * Asks the user for a new username.
      * @return The new username and the game statistics.
      */
-    public String[] askUsername() throws SQLException {
+    public String[] askUsername() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setHeaderText("Enter new username");
         currentUserName = dialog.showAndWait().orElse(null);
@@ -145,7 +132,6 @@ public class StartScreen {
         newUser = true;
 
         currentUser = new String[] {(currentUserName), ("0"), ("0")};
-        db.insert(currentUserName);
         return currentUser;
     }
     /**
