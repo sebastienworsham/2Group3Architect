@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static main.Main.*;
+import static main.StartScreen.currentUserName;
 import static main.StartScreen.playerInstance;
 
 public class Game {
@@ -37,19 +38,21 @@ public class Game {
     static Coin coin;
     int score;
     static String[] currentUser;
+    UserService userService;
 
 
 
-    public Game(Pane levelRoot, Scene gameScene, String[] currentUser) {
+    public Game(Pane levelRoot, Scene gameScene, String[] currentUser, UserService userService) {
         this.levelRoot = levelRoot;
         this.gameScene = gameScene;
         this.currentUser = currentUser;
+        this.userService = userService;
     }
 
     public void startGame(Stage primaryStage,int startLevelNum, String[] currentUser) {
         coin = new Coin(levelRoot, 100,100);
         setScore(Integer.parseInt(currentUser[1]));
-        levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage);
+        levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage, userService);
         levelController.nextLevel(currentUser);
 
         gameScene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
@@ -94,6 +97,7 @@ public class Game {
         if (coin.isTouchingPlayer(playerInstance.getPlayer())) {
             levelController.nextLevel(currentUser);
             levelController.saveScore(currentUser);
+            //userService.updateUser(users ,new User(currentUser[0], levelController.currentLevel()));
         }
     }
     public static void triggerJumpAction() {
@@ -107,9 +111,11 @@ public class Game {
     }
     private void saveOnClose() {
         if (StartScreen.newUser) {
-            users.put(StartScreen.currentUserName, score);
+            //users.put(StartScreen.currentUserName, score);
 
         }
+        userService.updateUser(users ,new User(currentUser[0], levelController.currentLevel()-1));
+        /*
 
         try {
             FileOutputStream fos = new FileOutputStream(SAVEPATH);
@@ -119,7 +125,7 @@ public class Game {
             oos.close();
         } catch (IOException e) {
             System.err.print(e.getMessage());
-        }
+        }*/
     }
     public static boolean getCheckIfJumpPlatform(){
         return checkJumpThroughPlatform;

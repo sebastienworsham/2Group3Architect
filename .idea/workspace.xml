@@ -4,11 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d833d84-dd71-4f73-9250-b08c463b7a4a" name="Changes" comment="Added platforms you can move through">
+    <list default="true" id="8d833d84-dd71-4f73-9250-b08c463b7a4a" name="Changes" comment="userService.updateUser()">
+      <change afterPath="$PROJECT_DIR$/src/main/java/main/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/main/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/main/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/level/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/level/LevelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/level/LevelInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/level/LevelInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/LoadScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/StartScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/save.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/save.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -50,21 +61,33 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2d1RCr4dF4Xtpt7cJXWdoJsQxKk" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Application.IOStreamsTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.Player.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;JUnit.IOStreamsTest.testIOStreams.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.NetworkingTest.testNetworking.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/sebastien/IdeaProjects/2Group3Architect&quot;,
@@ -74,16 +97,27 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;/Users/sebastien/IdeaProjects/Platformer4/src/main/java/main/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.32988507&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/fonts" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="main" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Spring Boot.Main">
     <configuration name="IOStreamsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.IOStreamsTest" />
       <module name="Platformer4" />
@@ -153,6 +187,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Platformer4" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="main.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.IOStreamsTest.testIOStreams" />
@@ -160,14 +201,6 @@
         <item itemvalue="Application.IOStreamsTest" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
-        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-51586f01" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -208,6 +241,16 @@
       <workItem from="1712351550225" duration="1658000" />
       <workItem from="1712357023015" duration="790000" />
       <workItem from="1713247850956" duration="1672000" />
+      <workItem from="1713297421375" duration="2213000" />
+      <workItem from="1713302491143" duration="102000" />
+      <workItem from="1713473805218" duration="788000" />
+      <workItem from="1713747671296" duration="562000" />
+      <workItem from="1713750548572" duration="3473000" />
+      <workItem from="1713754695568" duration="2134000" />
+      <workItem from="1713835750487" duration="118000" />
+      <workItem from="1713837929590" duration="15201000" />
+      <workItem from="1713903891531" duration="2017000" />
+      <workItem from="1713928433514" duration="33000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -303,6 +346,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First Commit" />
     <MESSAGE value="Added StartScreen" />
     <MESSAGE value="Level changes (still glitchy)" />
@@ -324,6 +368,16 @@
           <properties class="java.lang.RuntimeException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/LoadScreen.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Main.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

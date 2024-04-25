@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.Game;
+import main.UserService;
 
 
 import java.io.*;
@@ -35,17 +36,19 @@ public class LevelController {
     Coin coin;
     Game game;
     Stage stage;
+    UserService userService;
 
     public LevelController(Pane levelRoot) {
         this.levelRoot = levelRoot;
         currentLevelNum = 1;
     }
-    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage) {
+    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage, UserService userService) {
         this.levelRoot = levelRoot;
         this.currentLevelNum = currentLevelNum;
         this.coin = coin;
         this.game = game;
         this.stage = stage;
+        this.userService = userService;
     }
 
     public void nextLevel() {
@@ -183,6 +186,11 @@ public class LevelController {
 
         currentUser[1] = String.valueOf(game.getScore());
         //users.set(1, currentUser);
+    }
+
+    public int currentLevel()
+    {
+        return  currentLevelNum;
     }
 
 

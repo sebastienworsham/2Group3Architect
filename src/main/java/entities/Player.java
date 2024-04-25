@@ -33,6 +33,9 @@ public class Player {
     public void jumpPlayer() {
         if (canJump) {
             pVelocityY -= 30;
+            if (pVelocityY < -20) {
+                pVelocityY = -20;
+            }
             canJump = false;
         }
     }
