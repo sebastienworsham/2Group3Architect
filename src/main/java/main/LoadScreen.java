@@ -60,8 +60,8 @@ public class LoadScreen {
     }
 
 
-    public String[] getPlayerInformation(String key){
-        String[] currentUser = new String[] {
+    public String[] getPlayerInformation(String key) {
+        String[] currentUser = new String[]{
                 key,
                 getUserLevelByLinearSearch(key)
         };
@@ -69,11 +69,10 @@ public class LoadScreen {
         return currentUser;
     }
 
-    private String getUserLevelByLinearSearch(String playerName)
-    {
+    private String getUserLevelByLinearSearch(String playerName) {
         String levelOfGame = "0";
         for (User user : users) {
-            if(user.getUserName() ==  playerName){
+            if (user.getUserName() == playerName) {
                 levelOfGame = user.getGameLevel().toString();
                 break;
             }
@@ -81,4 +80,4 @@ public class LoadScreen {
         System.out.println(playerName + ":" + levelOfGame);
         return levelOfGame;
     }
-    }
+}

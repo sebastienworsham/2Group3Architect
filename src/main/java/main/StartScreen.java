@@ -34,8 +34,10 @@ public class StartScreen {
     LeaderboardScreen lbScreen;
     UserService userService;
     Scene uiScene;
+
     /**
      * Makes a StartScreen object with the UI elements and primary stage.
+     *
      * @param uiRoot       The root pane for UI elements.
      * @param levelRoot    The root pane for level elements.
      * @param playerRoot   The root pane for player elements.
@@ -49,10 +51,12 @@ public class StartScreen {
         this.primaryStage = primaryStage;
         this.uiScene = uiScene;
         lbScreen = new LeaderboardScreen(primaryStage, uiScene);
-        this.userService =userService;
+        this.userService = userService;
     }
+
     /**
      * Renders the start screen with buttons like new game, load game, and leaderboard.
+     *
      * @param startScreen To render start screen.
      */
     public void renderStartScreen(StartScreen startScreen) {
@@ -99,7 +103,7 @@ public class StartScreen {
             lbScreen.setupLbScreen();
         });
 
-        HBox hBox = new HBox(); 
+        HBox hBox = new HBox();
         hBox.setSpacing(20);
         hBox.getChildren().addAll(newGameButton, loadGameButton, leaderboardButton);
         hBox.setAlignment(Pos.CENTER);
@@ -122,8 +126,10 @@ public class StartScreen {
         layout.setBottom(bottomBox);
         uiRoot.getChildren().add(layout);
     }
+
     /**
      * Asks the user for a new username.
+     *
      * @return The new username and the game statistics.
      */
     public String[] askUsername() {
@@ -131,15 +137,17 @@ public class StartScreen {
         dialog.setHeaderText("Enter new username");
         currentUserName = dialog.showAndWait().orElse(null);
         // save the new user in DB with default level of 0
-        userService.saveUser(new User(currentUserName,0));
+        userService.saveUser(new User(currentUserName, 0));
         users = userService.getAllUsers();
         newUser = true;
 
-        currentUser = new String[] {(currentUserName), ("0"), ("0")};
+        currentUser = new String[]{(currentUserName), ("0"), ("0")};
         return currentUser;
     }
+
     /**
      * Sets up the game scene with the specified saved level number and user data.
+     *
      * @param savedLevelNum Level number to start the game from.
      * @param currentUser   Data of the current user.
      */
@@ -153,8 +161,10 @@ public class StartScreen {
 
         game.startGame(primaryStage, savedLevelNum, currentUser);
     }
+
     /**
      * Sets up the load scene for loading the saved game.
+     *
      * @param startScreen Handle load scene setup.
      */
     private void setupLoadScene(StartScreen startScreen) {
@@ -167,7 +177,8 @@ public class StartScreen {
         primaryStage.setScene(loadScene);
         primaryStage.show();
     }
-    public Scene getScene(){
+
+    public Scene getScene() {
         return uiScene;
     }
 }

@@ -29,7 +29,7 @@ public class Main extends Application {
     protected Pane playerRoot = new Pane();
     protected Pane uiRoot = new Pane();
     // Users is a HashMap which stores the player name and their current level
-    public static List<User> users  = new ArrayList<>();
+    public static List<User> users = new ArrayList<>();
 
     ConfigurableApplicationContext springContext;
 

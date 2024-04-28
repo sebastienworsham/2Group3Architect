@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class UserService {
-    private  final UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository UserRepository) {
@@ -25,34 +26,25 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void updateUser(List<User> users, User user) {
+    public void updateUser(List<User> users, String userName, int gameLevel) {
+        boolean userUpdated = false;
+        System.out.println("Username to update: [" + userName +"]");
+        for (User usr : users) {
 
-        for(User usr: users)
-        {
-            if(usr.getUserName() == user.getUserName())
-            {
-                userRepository.deleteById(usr.getId());
-                 userRepository.save(user);
+            System.out.print("Id: " + usr.getId());
+            System.out.print("\tUsername: [" + usr.getUserName()+ "]");
+            System.out.println("\tScore: " + usr.getGameLevel());
+
+            if (usr.getUserName().equals(userName)) {
+                usr.setGameLevel(gameLevel);
+                userRepository.save(usr);
+                userUpdated = true;
                 break;
             }
         }
-
+        if (!userUpdated) {
+            System.out.println("User not found");
+        }
     }
-
-    @PostConstruct
-    public void loadDataOnStartup() {
-        System.out.println("loadDataOnStartup called");
-        Main.users = userRepository.findAll();
-        System.out.println("loadDataOnStartup called");
-    }
-
-    @EventListener
-    public void eventListner(ApplicationStartedEvent event)
-    {
-        System.out.println("eventListner Called");
-        Main.users = userRepository.findAll();
-        System.out.println("eventListner Called");
-    }
-
 }
 

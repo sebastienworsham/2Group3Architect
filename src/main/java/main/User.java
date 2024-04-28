@@ -9,18 +9,24 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Entity(name = "User")
 @Table(name = "GameUser")
 public class User {
-
-
-    public  User()
-    {
-
+    public User() {
+        this.userName = "";
+        this.gameLevel = 0;
+        this.score = 0;
     }
 
-    public User(String userName, Integer gameLevel)
-    {
+    public User(String userName, Integer gameLevel) {
         this.userName = userName;
         this.gameLevel = gameLevel;
+        this.score = 0;
     }
+
+    public User(String userName, Integer gameLevel, Integer score) {
+        this.userName = userName;
+        this.gameLevel = gameLevel;
+        this.score = score;
+    }
+
     @Id
     @SequenceGenerator(
             name = "userSequence",
@@ -51,7 +57,7 @@ public class User {
             nullable = false
 
     )
-    private String userName ;
+    private String userName;
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -73,6 +79,20 @@ public class User {
 
     public Integer getGameLevel() {
         return gameLevel;
+    }
+
+    @Column(
+            name = "gameScore",
+            nullable = true
+    )
+    private Integer score;
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public Integer getScore() {
+        return score;
     }
 
 }
