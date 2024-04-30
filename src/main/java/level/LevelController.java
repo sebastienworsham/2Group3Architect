@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.Game;
+import main.UserService;
 
 
 import java.io.*;
@@ -35,25 +36,28 @@ public class LevelController {
     Coin coin;
     Game game;
     Stage stage;
+    UserService userService;
 
     public LevelController(Pane levelRoot) {
         this.levelRoot = levelRoot;
         currentLevelNum = 1;
     }
-    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage) {
+
+    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage, UserService userService) {
         this.levelRoot = levelRoot;
         this.currentLevelNum = currentLevelNum;
         this.coin = coin;
         this.game = game;
         this.stage = stage;
+        this.userService = userService;
     }
 
     public void nextLevel() {
         playerInstance.resetPlayerPosition(); //puts player in top left of screen
         levelRoot.getChildren().clear(); //clears previous level
         currentLevelNum += 1;
-       // levelRoot.setTranslateX(0);
-       // levelRoot.setTranslateY(0);
+        // levelRoot.setTranslateX(0);
+        // levelRoot.setTranslateY(0);
 
         platforms.clear(); //clears previous level collision information
         jumpThroughPlatforms.clear(); //clears previous level collision information
@@ -95,6 +99,7 @@ public class LevelController {
         renderLevel();
         coin.renderCoin(currentLevelArray);
     }
+
     public void nextLevel(String[] currentUser) {
         playerInstance.resetPlayerPosition(); //puts player in top left of screen
         levelRoot.getChildren().clear(); //clears previous level
@@ -143,29 +148,30 @@ public class LevelController {
         renderLevel();
         coin.renderCoin(currentLevelArray);
     }
+
     public void renderLevel() {
         levelWidth = currentLevelArray[0].length() * 60;
 
-        for (int i=0; i<currentLevelArray.length; i++) {
+        for (int i = 0; i < currentLevelArray.length; i++) {
             String currentLine = currentLevelArray[i];
-            for (int j=0; j<currentLine.length(); j++) {
-                if(currentLine.charAt(j) == '1') {
-                    Node platform = drawRectangle(j*60, i*60, 60, 60, Color.BLACK);
+            for (int j = 0; j < currentLine.length(); j++) {
+                if (currentLine.charAt(j) == '1') {
+                    Node platform = drawRectangle(j * 60, i * 60, 60, 60, Color.BLACK);
                     platforms.add(platform);
                 }
-                if(currentLine.charAt(j) == '2') {
-                    Node jumpThroughPlatform = drawRectangle(j*60,i*60,60,20, Color.BLACK);
+                if (currentLine.charAt(j) == '2') {
+                    Node jumpThroughPlatform = drawRectangle(j * 60, i * 60, 60, 20, Color.BLACK);
                     jumpThroughPlatforms.add(jumpThroughPlatform);
                 }
-                if(currentLine.charAt(j) == '3') {
-                    Node resetBlock = drawRectangle(j*60, i*60+40, 60, 20, Color.RED);
+                if (currentLine.charAt(j) == '3') {
+                    Node resetBlock = drawRectangle(j * 60, i * 60 + 40, 60, 20, Color.RED);
                     resetBlocks.add(resetBlock);
                 }
             }
         }
     }
 
-    public Node drawRectangle (int x, int y, int w, int h, Color color) {
+    public Node drawRectangle(int x, int y, int w, int h, Color color) {
         Rectangle entity = new Rectangle(w, h);
         entity.setTranslateX(x);
         entity.setTranslateY(y);
@@ -183,6 +189,10 @@ public class LevelController {
 
         currentUser[1] = String.valueOf(game.getScore());
         //users.set(1, currentUser);
+    }
+
+    public int currentLevel() {
+        return currentLevelNum;
     }
 
 

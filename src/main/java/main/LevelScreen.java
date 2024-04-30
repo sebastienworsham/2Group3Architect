@@ -15,25 +15,29 @@ import level.LevelController;
 import static main.Main.GAMEHEIGHT;
 import static main.Main.GAMEWIDTH;
 
-    /**
-     * The LevelScreen class manages the level selection screen.
-     */
-    public class LevelScreen {
+/**
+ * The LevelScreen class manages the level selection screen.
+ */
+public class LevelScreen {
     StartScreen startScreen;
-        Scene levelScene;
+    Scene levelScene;
+
     /**
-    * Creates a LevelScreen object.
-    * @param startScreen Navigates back to the start screen.
-    */
+     * Creates a LevelScreen object.
+     *
+     * @param startScreen Navigates back to the start screen.
+     */
 
     public LevelScreen(StartScreen startScreen) {
         this.startScreen = startScreen;
     }
+
     /**
-    * Displays the level selection screen.
-    * @param primaryStage The primary stage to set the scene.
-    * @param currentUser  The current user's information.
-    */
+     * Displays the level selection screen.
+     *
+     * @param primaryStage The primary stage to set the scene.
+     * @param currentUser  The current user's information.
+     */
 
     public void showLevelSelection(Stage primaryStage, String[] currentUser) {
         Label selectLevelLabel = new Label("Select Level");
@@ -117,7 +121,7 @@ import static main.Main.GAMEWIDTH;
         primaryStage.show();
     }
 
-    public Scene getScene(){
-            return levelScene;
-        }
+    public Scene getScene() {
+        return levelScene;
+    }
 }

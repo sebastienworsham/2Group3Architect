@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,6 +17,7 @@ public class Coin {
     Circle circle;
     int xAxis;
     int yAxis;
+
     public Coin(Pane levelRoot, int xCords, int yCords) {
         this.levelRoot = levelRoot;
         xAxis = xCords;
@@ -26,14 +28,17 @@ public class Coin {
         int rand1 = random.nextInt(1000);
         int rand2 = random.nextInt(1000);
 
-        drawCircle(GAMEWIDTH-xAxis, GAMEHEIGHT-yAxis);
+        drawCircle(GAMEWIDTH - xAxis, GAMEHEIGHT - yAxis);
     }
+
     public int getXAxis() {
         return xAxis;
     }
+
     public int getYAxis() {
         return yAxis;
     }
+
     public void drawCircle(int x, int y) {
         circle = new Circle(30);
         circle.setTranslateX(x);

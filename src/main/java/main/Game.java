@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static main.Main.*;
+import static main.StartScreen.currentUserName;
 import static main.StartScreen.playerInstance;
 
 public class Game {
@@ -30,26 +31,31 @@ public class Game {
     public static LevelController levelController;
     Scene gameScene;
     private static HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
-    private static boolean isPressed(KeyCode key) { return keys.getOrDefault(key, false); }
+
+    private static boolean isPressed(KeyCode key) {
+        return keys.getOrDefault(key, false);
+    }
+
     boolean nKeyPressed;
     boolean mKeyPressed;
     static boolean checkJumpThroughPlatform = false;
     static Coin coin;
     int score;
     static String[] currentUser;
+    UserService userService;
 
 
-
-    public Game(Pane levelRoot, Scene gameScene, String[] currentUser) {
+    public Game(Pane levelRoot, Scene gameScene, String[] currentUser, UserService userService) {
         this.levelRoot = levelRoot;
         this.gameScene = gameScene;
         this.currentUser = currentUser;
+        this.userService = userService;
     }
 
-    public void startGame(Stage primaryStage,int startLevelNum, String[] currentUser) {
-        coin = new Coin(levelRoot, 100,100);
+    public void startGame(Stage primaryStage, int startLevelNum, String[] currentUser) {
+        coin = new Coin(levelRoot, 100, 100);
         setScore(Integer.parseInt(currentUser[1]));
-        levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage);
+        levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage, userService);
         levelController.nextLevel(currentUser);
 
         gameScene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
@@ -68,6 +74,7 @@ public class Game {
         };
         timer.start();
     }
+
     private void gameLoop() {
         if (isPressed(KeyCode.SPACE) || isPressed(KeyCode.UP)) {
             playerInstance.jumpPlayer();
@@ -94,39 +101,33 @@ public class Game {
         if (coin.isTouchingPlayer(playerInstance.getPlayer())) {
             levelController.nextLevel(currentUser);
             levelController.saveScore(currentUser);
+            //userService.updateUser(users ,new User(currentUser[0], levelController.currentLevel()));
         }
     }
+
     public static void triggerJumpAction() {
         // Simulate pressing the jump key
         keys.put(KeyCode.SPACE, true);
     }
+
     public static void ifSpacePressed() {
         if (isPressed(KeyCode.SPACE) || isPressed(KeyCode.UP)) {
             playerInstance.jumpPlayer();
         }
     }
+
     private void saveOnClose() {
-        if (StartScreen.newUser) {
-            users.put(StartScreen.currentUserName, score);
-
-        }
-
-        try {
-            FileOutputStream fos = new FileOutputStream(SAVEPATH);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(users);
-            oos.close();
-        } catch (IOException e) {
-            System.err.print(e.getMessage());
-        }
+        userService.updateUser(users, currentUser[0], levelController.currentLevel() - 1);
     }
-    public static boolean getCheckIfJumpPlatform(){
+
+    public static boolean getCheckIfJumpPlatform() {
         return checkJumpThroughPlatform;
     }
+
     public int getScore() {
         return score;
     }
+
     public void setScore(int score) {
         this.score = score;
     }

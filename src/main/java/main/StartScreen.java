@@ -14,10 +14,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import main.leaderboard.LeaderboardScreen;
-import main.leaderboard.LeaderboardScreen;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.io.*;
 
 import static main.Main.*;
 
@@ -34,28 +32,31 @@ public class StartScreen {
     String[] currentUser;
     public static Boolean newUser = false;
     LeaderboardScreen lbScreen;
+    UserService userService;
     Scene uiScene;
-    Database db;
+
     /**
      * Makes a StartScreen object with the UI elements and primary stage.
+     *
      * @param uiRoot       The root pane for UI elements.
      * @param levelRoot    The root pane for level elements.
      * @param playerRoot   The root pane for player elements.
      * @param primaryStage The primary stage of the application.
      * @param uiScene      The scene for the UI.
      */
-    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage, Scene uiScene) throws SQLException {
+    public StartScreen(Pane uiRoot, Pane levelRoot, Pane playerRoot, Stage primaryStage, Scene uiScene, UserService userService) {
         this.uiRoot = uiRoot;
         this.levelRoot = levelRoot;
         this.playerRoot = playerRoot;
         this.primaryStage = primaryStage;
         this.uiScene = uiScene;
         lbScreen = new LeaderboardScreen(primaryStage, uiScene);
-
-        db = new Database();
+        this.userService = userService;
     }
+
     /**
      * Renders the start screen with buttons like new game, load game, and leaderboard.
+     *
      * @param startScreen To render start screen.
      */
     public void renderStartScreen(StartScreen startScreen) {
@@ -93,15 +94,7 @@ public class StartScreen {
         });
 
         newGameButton.setOnAction(event -> {
-            try {
-                setupGameScene(0, askUsername());
-            } catch (SQLException e) {
-                if ( e instanceof SQLIntegrityConstraintViolationException) {
-                    System.err.println("Username already exists");
-                } else {
-                    throw new RuntimeException(e);
-                }
-            }
+            setupGameScene(0, askUsername());
         });
         loadGameButton.setOnAction(event -> {
             setupLoadScene(startScreen);
@@ -110,7 +103,7 @@ public class StartScreen {
             lbScreen.setupLbScreen();
         });
 
-        HBox hBox = new HBox(); 
+        HBox hBox = new HBox();
         hBox.setSpacing(20);
         hBox.getChildren().addAll(newGameButton, loadGameButton, leaderboardButton);
         hBox.setAlignment(Pos.CENTER);
@@ -133,23 +126,28 @@ public class StartScreen {
         layout.setBottom(bottomBox);
         uiRoot.getChildren().add(layout);
     }
+
     /**
      * Asks the user for a new username.
+     *
      * @return The new username and the game statistics.
      */
-    public String[] askUsername() throws SQLException {
+    public String[] askUsername() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setHeaderText("Enter new username");
         currentUserName = dialog.showAndWait().orElse(null);
-
+        // save the new user in DB with default level of 0
+        userService.saveUser(new User(currentUserName, 0));
+        users = userService.getAllUsers();
         newUser = true;
 
-        currentUser = new String[] {(currentUserName), ("0"), ("0")};
-        db.insert(currentUserName);
+        currentUser = new String[]{(currentUserName), ("0"), ("0")};
         return currentUser;
     }
+
     /**
      * Sets up the game scene with the specified saved level number and user data.
+     *
      * @param savedLevelNum Level number to start the game from.
      * @param currentUser   Data of the current user.
      */
@@ -158,13 +156,15 @@ public class StartScreen {
         bgRoot.setStyle("-fx-background-color: #87ce87;");
         bgRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
         Scene gameScene = new Scene(new Pane(bgRoot, playerRoot, levelRoot), GAMEWIDTH, GAMEHEIGHT);
-        game = new Game(levelRoot, gameScene, currentUser);
+        game = new Game(levelRoot, gameScene, currentUser, userService);
         playerInstance = new Player(playerRoot);
 
         game.startGame(primaryStage, savedLevelNum, currentUser);
     }
+
     /**
      * Sets up the load scene for loading the saved game.
+     *
      * @param startScreen Handle load scene setup.
      */
     private void setupLoadScene(StartScreen startScreen) {
@@ -177,7 +177,8 @@ public class StartScreen {
         primaryStage.setScene(loadScene);
         primaryStage.show();
     }
-    public Scene getScene(){
+
+    public Scene getScene() {
         return uiScene;
     }
 }

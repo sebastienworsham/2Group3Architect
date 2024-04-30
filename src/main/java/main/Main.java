@@ -1,26 +1,26 @@
 package main;
 
-import entities.Player;
-import javafx.animation.AnimationTimer;
-import javafx.animation.ParallelTransition;
 import javafx.application.Application;
-import javafx.scene.Node;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
-import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
+@SpringBootApplication
+//@ComponentScan
+//@EnableAutoConfiguration
 public class Main extends Application {
     public static final int GAMEWIDTH = 1280;
     public static final int GAMEHEIGHT = 720;
@@ -29,43 +29,54 @@ public class Main extends Application {
     protected Pane playerRoot = new Pane();
     protected Pane uiRoot = new Pane();
     // Users is a HashMap which stores the player name and their current level
-    public static Map<String, Integer> users = new HashMap<>();
+    public static List<User> users = new ArrayList<>();
+
+    ConfigurableApplicationContext springContext;
+
+    @Autowired
+    private UserService userService;
+
+    @Override
+    public void init() throws Exception {
+        springContext = SpringApplication.run(Main.class);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample.fxml"));
+        fxmlLoader.setControllerFactory(springContext::getBean);
+        //root = fxmlLoader.load();
+        springContext
+                .getAutowireCapableBeanFactory()
+                .autowireBeanProperties(
+                        this,
+                        AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE,
+                        true
+                );
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        readSaveInfo();
-        for (Map.Entry<String, Integer> entry : users.entrySet()) {
-            System.out.print("Username: " + entry.getKey());
-            System.out.println(", Score: " + entry.getValue());
-        }
 
         Scene uiScene = new Scene(uiRoot, GAMEWIDTH, GAMEHEIGHT);
-        //uiScene.getStylesheets().add("main/resources/styles.css");
         // Load the CSS file
         uiScene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
         StartScreen startScreen;
-        startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage, uiScene);
+        startScreen = new StartScreen(uiRoot, levelRoot, playerRoot, primaryStage, uiScene, userService);
         startScreen.renderStartScreen(startScreen);
 
+        users = userService.getAllUsers();
+        for (User usr : users) {
+            System.out.print("Username: " + usr.getUserName());
+            System.out.println(", Score: " + usr.getGameLevel());
+        }
         primaryStage.setScene(uiScene);
         primaryStage.show();
     }
 
-    private void readSaveInfo() {
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(SAVEPATH);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-
-            users = (HashMap<String, Integer>) ois.readObject();
-            fis.close();
-        } catch (IOException e) {
-            System.err.print(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public void stop() throws Exception {
+        springContext.stop();
     }
 
 
 }
+
+
