@@ -5,8 +5,10 @@ import entities.Player;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -37,19 +39,22 @@ public class LevelController {
     Game game;
     Stage stage;
     UserService userService;
+    Label elapsedTimeLabel;
+    Long startTime;
 
     public LevelController(Pane levelRoot) {
         this.levelRoot = levelRoot;
         currentLevelNum = 1;
     }
 
-    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage, UserService userService) {
+    public LevelController(Pane levelRoot, int currentLevelNum, Coin coin, Game game, Stage stage, UserService userService, Label elapsedTimeLabel) {
         this.levelRoot = levelRoot;
         this.currentLevelNum = currentLevelNum;
         this.coin = coin;
         this.game = game;
         this.stage = stage;
         this.userService = userService;
+        this.elapsedTimeLabel = elapsedTimeLabel;
     }
 
     public void nextLevel() {
@@ -110,6 +115,7 @@ public class LevelController {
         platforms.clear(); //clears previous level collision information
         jumpThroughPlatforms.clear(); //clears previous level collision information
         resetBlocks.clear(); //clears previous level collision information
+        setupTimeThread();
 
         switch (currentLevelNum) {
             case 1:
@@ -147,6 +153,31 @@ public class LevelController {
         }
         renderLevel();
         coin.renderCoin(currentLevelArray);
+    }
+
+
+    /*
+    Setup the thread to start counting seconds and update the label text
+    */
+    private void setupTimeThread() {
+        // Start the timer thread
+        Thread timerThread = new Thread(() -> {
+            startTime = System.currentTimeMillis();
+            while (true) {
+                try {
+                    long elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
+                    String timeText = "Time spent: " + elapsedTime + " seconds";
+                    // Update the label on the JavaFX Application Thread
+                    Platform.runLater(() -> elapsedTimeLabel.setText(timeText));
+                    // Sleep for a second
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        timerThread.setDaemon(true); // Set the thread as a daemon
+        timerThread.start();
     }
 
     public void renderLevel() {

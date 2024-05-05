@@ -3,6 +3,7 @@ package main;
 import entities.Player;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,6 +31,7 @@ public class StartScreen {
     public static Player playerInstance;
     public static String currentUserName;
     String[] currentUser;
+    private Label timeElapsedLabel;
     public static Boolean newUser = false;
     LeaderboardScreen lbScreen;
     UserService userService;
@@ -155,11 +157,23 @@ public class StartScreen {
         bgRoot = new Pane();
         bgRoot.setStyle("-fx-background-color: #87ce87;");
         bgRoot.setPrefSize(GAMEWIDTH, GAMEHEIGHT);
-        Scene gameScene = new Scene(new Pane(bgRoot, playerRoot, levelRoot), GAMEWIDTH, GAMEHEIGHT);
+
+        // set the label for elapsed timer
+        timeElapsedLabel = new Label();
+        timeElapsedLabel.layoutXProperty().bind(bgRoot.widthProperty().divide(1).subtract(timeElapsedLabel.widthProperty().multiply(1.2)) );
+        timeElapsedLabel.layoutYProperty().bind(bgRoot.heightProperty().subtract(timeElapsedLabel.heightProperty().add(15)));
+        timeElapsedLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 25px");
+
+
+        Pane elapsedTimePane = new Pane();
+        elapsedTimePane.getChildren().add(timeElapsedLabel);
+
+        Parent parentPane =  new Pane(bgRoot, playerRoot, levelRoot, elapsedTimePane);
+        Scene gameScene = new Scene(parentPane, GAMEWIDTH, GAMEHEIGHT);
         game = new Game(levelRoot, gameScene, currentUser, userService);
         playerInstance = new Player(playerRoot);
 
-        game.startGame(primaryStage, savedLevelNum, currentUser);
+        game.startGame(primaryStage, savedLevelNum, currentUser, timeElapsedLabel );
     }
 
     /**

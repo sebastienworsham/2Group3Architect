@@ -7,6 +7,7 @@ import javafx.animation.ParallelTransition;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -52,10 +53,10 @@ public class Game {
         this.userService = userService;
     }
 
-    public void startGame(Stage primaryStage, int startLevelNum, String[] currentUser) {
+    public void startGame(Stage primaryStage, int startLevelNum, String[] currentUser, Label timeElapsedLabel) {
         coin = new Coin(levelRoot, 100, 100);
         setScore(Integer.parseInt(currentUser[1]));
-        levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage, userService);
+        levelController = new LevelController(levelRoot, startLevelNum, coin, this, primaryStage, userService, timeElapsedLabel);
         levelController.nextLevel(currentUser);
 
         gameScene.setOnKeyPressed(event -> keys.put(event.getCode(), true));
