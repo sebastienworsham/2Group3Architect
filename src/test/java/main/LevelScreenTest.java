@@ -20,12 +20,13 @@ class LevelScreenTest extends ApplicationTest {
     Pane uiRoot = new Pane();
     StartScreen startScreen;
     LevelScreen levelScreen;
+    UserService userService;
     int GAMEWIDTH = 1280;
     int GAMEHEIGHT = 720;
 
     public void start(Stage primaryStage) throws Exception {
         Scene uiScene = new Scene(this.uiRoot, (double)this.GAMEWIDTH, (double)this.GAMEHEIGHT);
-        this.startScreen = new StartScreen(this.uiRoot, this.levelRoot, this.playerRoot, primaryStage, uiScene);
+        this.startScreen = new StartScreen(this.uiRoot, this.levelRoot, this.playerRoot, primaryStage, uiScene, userService);
         this.startScreen.renderStartScreen(this.startScreen);
         // init levels screen
         levelScreen = new LevelScreen(this.startScreen);
