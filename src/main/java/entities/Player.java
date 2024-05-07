@@ -94,10 +94,18 @@ public class Player {
                 if (player.getBoundsInParent().intersects(bottomScreenBorderBlock.getBoundsInParent())) {
                     if (movingDown) {
                         player.setTranslateY(player.getTranslateY() - 1);
+                        canJump = true;
+                        return;
                     }
                 }
             }
-            for (Node topScreenBorderBlock)
+            for (Node topScreenBorderBlock : LevelController.topScreenBorderBlocks) {
+                if (player.getBoundsInParent().intersects(topScreenBorderBlock.getBoundsInParent())) {
+                    player.setTranslateY(player.getTranslateY() + 2);
+                    playerInstance.pVelocityY = 0;
+                    return;
+                }
+            }
             for (Node jumpThroughPlatform : LevelController.jumpThroughPlatforms) {
                 if (player.getBoundsInParent().intersects(jumpThroughPlatform.getBoundsInParent())) {
                     if (pVelocityY == 3) {
