@@ -36,6 +36,8 @@ public class Game {
     private static boolean isPressed(KeyCode key) {
         return keys.getOrDefault(key, false);
     }
+    private long lastQPressTime = 0; // Time when Q was last pressed, in nanoseconds
+    private long qCooldown = 2000000000; // Cooldown period in nanoseconds, 2 seconds
 
     boolean nKeyPressed;
     boolean mKeyPressed;
@@ -77,14 +79,25 @@ public class Game {
     }
 
     private void gameLoop() {
+        long currentTime = System.nanoTime();
         if (isPressed(KeyCode.SPACE) || isPressed(KeyCode.UP)) {
             playerInstance.jumpPlayer();
         }
         if (isPressed(KeyCode.A) || isPressed(KeyCode.LEFT)) {
-            playerInstance.movePlayerX(-5);
+            if (isPressed(KeyCode.Q) && (currentTime - lastQPressTime > qCooldown)) {
+                playerInstance.movePlayerX(-100);
+                lastQPressTime = currentTime; // Update last pressed time
+            } else {
+                playerInstance.movePlayerX(-5);
+            }
         }
         if (isPressed(KeyCode.D) || isPressed(KeyCode.RIGHT)) {
-            playerInstance.movePlayerX(5);
+            if (isPressed(KeyCode.Q) && (currentTime - lastQPressTime > qCooldown)) {
+                playerInstance.movePlayerX(100);
+                lastQPressTime = currentTime; // Update last pressed time
+            } else {
+                playerInstance.movePlayerX(5);
+            }
         }
         if (isPressed(KeyCode.S) || isPressed(KeyCode.DOWN)) {
             checkJumpThroughPlatform = true;

@@ -34,6 +34,10 @@ public class LevelController {
     public static ArrayList<Node> platforms = new ArrayList<Node>();
     public static ArrayList<Node> jumpThroughPlatforms = new ArrayList<Node>();
     public static ArrayList<Node> resetBlocks = new ArrayList<Node>();
+    public static ArrayList<Node> topScreenBorderBlocks = new ArrayList<Node>();
+    public static ArrayList<Node> rightScreenBorderBlocks = new ArrayList<Node>();
+    public static ArrayList<Node> leftScreenBorderBlocks = new ArrayList<Node>();
+    public static ArrayList<Node> bottomScreenBorderBlocks = new ArrayList<Node>();
     int currentLevelNum;
     Coin coin;
     Game game;
@@ -67,6 +71,10 @@ public class LevelController {
         platforms.clear(); //clears previous level collision information
         jumpThroughPlatforms.clear(); //clears previous level collision information
         resetBlocks.clear(); //clears previous level collision information
+        topScreenBorderBlocks.clear();
+        rightScreenBorderBlocks.clear();
+        leftScreenBorderBlocks.clear();
+        bottomScreenBorderBlocks.clear();
 
         switch (currentLevelNum) {
             case 1:
@@ -115,6 +123,10 @@ public class LevelController {
         platforms.clear(); //clears previous level collision information
         jumpThroughPlatforms.clear(); //clears previous level collision information
         resetBlocks.clear(); //clears previous level collision information
+        topScreenBorderBlocks.clear();
+        rightScreenBorderBlocks.clear();
+        leftScreenBorderBlocks.clear();
+        bottomScreenBorderBlocks.clear();
         setupTimeThread();
 
         switch (currentLevelNum) {
@@ -186,17 +198,33 @@ public class LevelController {
         for (int i = 0; i < currentLevelArray.length; i++) {
             String currentLine = currentLevelArray[i];
             for (int j = 0; j < currentLine.length(); j++) {
-                if (currentLine.charAt(j) == '1') {
+                if (currentLine.charAt(j) == '1') { //normal block
                     Node platform = drawRectangle(j * 60, i * 60, 60, 60, Color.BLACK);
                     platforms.add(platform);
                 }
-                if (currentLine.charAt(j) == '2') {
+                if (currentLine.charAt(j) == '2') { //Jump through platform
                     Node jumpThroughPlatform = drawRectangle(j * 60, i * 60, 60, 20, Color.BLACK);
                     jumpThroughPlatforms.add(jumpThroughPlatform);
                 }
-                if (currentLine.charAt(j) == '3') {
+                if (currentLine.charAt(j) == '3') { //kill block
                     Node resetBlock = drawRectangle(j * 60, i * 60 + 40, 60, 20, Color.RED);
                     resetBlocks.add(resetBlock);
+                }
+                if (currentLine.charAt(j) == '4') { //top screen border
+                    Node platform = drawRectangle(j * 60, i * 60 - 60, 60, 60, Color.BLACK);
+                    topScreenBorderBlocks.add(platform);
+                }
+                if (currentLine.charAt(j) == '5') { //right screen border
+                    Node platform = drawRectangle(j * 60 + 60, i * 60, 60, 60, Color.BLACK);
+                    rightScreenBorderBlocks.add(platform);
+                }
+                if (currentLine.charAt(j) == '6') { //left screen border
+                    Node platform = drawRectangle(j * 60 - 60, i * 60, 60, 60, Color.BLACK);
+                    leftScreenBorderBlocks.add(platform);
+                }
+                if (currentLine.charAt(j) == '7') { //bottom screen border
+                    Node platform = drawRectangle(j * 60, i * 60 + 60, 60, 60, Color.BLACK);
+                    bottomScreenBorderBlocks.add(platform);
                 }
             }
         }
