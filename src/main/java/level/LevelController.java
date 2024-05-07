@@ -211,20 +211,20 @@ public class LevelController {
                     resetBlocks.add(resetBlock);
                 }
                 if (currentLine.charAt(j) == '4') { //top screen border
-                    Node platform = drawRectangle(j * 60, i * 60 - 60, 60, 60, Color.BLACK);
-                    topScreenBorderBlocks.add(platform);
+                    Node topScreenBorderBlock = drawRectangle(j * 60, i * 60 - 60, 60, 60, Color.BLACK);
+                    topScreenBorderBlocks.add(topScreenBorderBlock);
                 }
                 if (currentLine.charAt(j) == '5') { //right screen border
-                    Node platform = drawRectangle(j * 60 + 60, i * 60, 60, 60, Color.BLACK);
-                    rightScreenBorderBlocks.add(platform);
+                    Node rightScreenBorderBlock = drawRectangle(j * 60 + 60, i * 60, 60, 60, Color.BLACK);
+                    rightScreenBorderBlocks.add(rightScreenBorderBlock);
                 }
                 if (currentLine.charAt(j) == '6') { //left screen border
-                    Node platform = drawRectangle(j * 60 - 60, i * 60, 60, 60, Color.BLACK);
-                    leftScreenBorderBlocks.add(platform);
+                    Node leftScreenBorderBlock = drawRectangle(j * 60 - 60, i * 60, 60, 60, Color.BLACK);
+                    leftScreenBorderBlocks.add(leftScreenBorderBlock);
                 }
                 if (currentLine.charAt(j) == '7') { //bottom screen border
-                    Node platform = drawRectangle(j * 60, i * 60 + 60, 60, 60, Color.BLACK);
-                    bottomScreenBorderBlocks.add(platform);
+                    Node bottomScreenBorderBlock = drawRectangle(j * 60, i * 60 + 60, 60, 60, Color.BLACK);
+                    bottomScreenBorderBlocks.add(bottomScreenBorderBlock);
                 }
             }
         }
