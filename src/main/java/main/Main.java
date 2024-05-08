@@ -24,7 +24,7 @@ import java.util.*;
 //@ComponentScan
 //@EnableAutoConfiguration
 public class Main extends Application {
-    public static final int GAMEWIDTH = 1280;
+    public static final int GAMEWIDTH = 1320;
     public static final int GAMEHEIGHT = 720;
     public static final String SAVEPATH = "src/main/java/main/save.csv";
     protected Pane levelRoot = new Pane();

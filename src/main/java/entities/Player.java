@@ -72,18 +72,14 @@ public class Player {
             }
             for (Node rightScreenBorderBlock : LevelController.rightScreenBorderBlocks) {
                 if (player.getBoundsInParent().intersects(rightScreenBorderBlock.getBoundsInParent())) {
-                    if (movingRight) {
-                        player.setTranslateX(player.getTranslateX() - 3);
-                        return;
-                    }
+                    player.setTranslateX(player.getTranslateX() - 3);
+                    return;
                 }
             }
             for (Node leftScreenBorderBlock : LevelController.leftScreenBorderBlocks) {
                 if (player.getBoundsInParent().intersects(leftScreenBorderBlock.getBoundsInParent())) {
-                    if (movingRight) {
-                        player.setTranslateX(player.getTranslateX() + 3);
-                        return;
-                    }
+                    player.setTranslateX(player.getTranslateX() + 3);
+                    return;
                 }
             }
             player.setTranslateX(player.getTranslateX() + (movingRight ? 1 : -1));

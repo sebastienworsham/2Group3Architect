@@ -38,6 +38,7 @@ public class LevelController {
     public static ArrayList<Node> rightScreenBorderBlocks = new ArrayList<Node>();
     public static ArrayList<Node> leftScreenBorderBlocks = new ArrayList<Node>();
     public static ArrayList<Node> bottomScreenBorderBlocks = new ArrayList<Node>();
+    public static ArrayList<Node> cornerBorderBlocks = new ArrayList<Node>();
     int currentLevelNum;
     Coin coin;
     Game game;
@@ -199,15 +200,15 @@ public class LevelController {
             String currentLine = currentLevelArray[i];
             for (int j = 0; j < currentLine.length(); j++) {
                 if (currentLine.charAt(j) == '1') { //normal block
-                    Node platform = drawRectangle(j * 60, i * 60, 60, 60, Color.BLACK);
+                    Node platform = drawRectangle(j * 60 - 60, i * 60, 60, 60, Color.BLACK);
                     platforms.add(platform);
                 }
                 if (currentLine.charAt(j) == '2') { //Jump through platform
-                    Node jumpThroughPlatform = drawRectangle(j * 60, i * 60, 60, 20, Color.BLACK);
+                    Node jumpThroughPlatform = drawRectangle(j * 60 - 60, i * 60 + 60, 60, 20, Color.BLACK);
                     jumpThroughPlatforms.add(jumpThroughPlatform);
                 }
                 if (currentLine.charAt(j) == '3') { //kill block
-                    Node resetBlock = drawRectangle(j * 60, i * 60 + 40, 60, 20, Color.RED);
+                    Node resetBlock = drawRectangle(j * 60 - 60, i * 60 + 100, 60, 20, Color.RED);
                     resetBlocks.add(resetBlock);
                 }
                 if (currentLine.charAt(j) == '4') { //top screen border
@@ -223,8 +224,36 @@ public class LevelController {
                     leftScreenBorderBlocks.add(leftScreenBorderBlock);
                 }
                 if (currentLine.charAt(j) == '7') { //bottom screen border
-                    Node bottomScreenBorderBlock = drawRectangle(j * 60, i * 60 + 60, 60, 60, Color.BLACK);
+                    Node bottomScreenBorderBlock = drawRectangle(j * 60, i * 60, 60, 60, Color.BLACK);
                     bottomScreenBorderBlocks.add(bottomScreenBorderBlock);
+                }
+                if (currentLine.charAt(j) == 'a') {
+                    Node topLeftBorderBlock = drawRectangle(j * 60 - 60, i * 60, 60, 60, Color.BLACK);
+                    Node topCornerBlock = drawRectangle(j * 60, i * 60 - 60, 60, 60, Color.BLACK);
+                    leftScreenBorderBlocks.add(topLeftBorderBlock);
+                    topScreenBorderBlocks.add(topCornerBlock);
+                }
+                if (currentLine.charAt(j) == 'b') {
+                    Node topRightBorderBlock = drawRectangle(j * 60 + 60, i * 60, 60, 60, Color.BLACK);
+                    Node topCornerBlock = drawRectangle(j * 60, i * 60 - 60, 60, 60, Color.BLACK);
+                    rightScreenBorderBlocks.add(topRightBorderBlock);
+                    topScreenBorderBlocks.add(topCornerBlock);
+                }
+                if (currentLine.charAt(j) == 'c') {
+                    Node bottomLeftBorderBlock = drawRectangle(j * 60 - 60, i * 60, 60, 60, Color.BLACK);
+                    Node bottomCornerBlock = drawRectangle(j * 60, i * 60 + 60, 60, 60, Color.BLACK);
+                    leftScreenBorderBlocks.add(bottomLeftBorderBlock);
+                    bottomScreenBorderBlocks.add(bottomCornerBlock);
+                }
+                if (currentLine.charAt(j) == 'd') {
+                    Node topRightBorderBlock = drawRectangle(j * 60 + 60, i * 60, 60, 60, Color.BLACK);
+                    Node bottomCornerBlock = drawRectangle(j * 60, i * 60 + 60, 60, 60, Color.BLACK);
+                    rightScreenBorderBlocks.add(topRightBorderBlock);
+                    bottomScreenBorderBlocks.add(bottomCornerBlock);
+                }
+                if (currentLine.charAt(j) == 'e') { //kill block
+                    Node resetBlock = drawRectangle(j * 60 - 60, i * 60 + 40, 60, 20, Color.RED);
+                    resetBlocks.add(resetBlock);
                 }
             }
         }
