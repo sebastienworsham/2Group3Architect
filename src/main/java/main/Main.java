@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -16,6 +17,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.sql.SQLException;
 import java.util.*;
 
 @SpringBootApplication
@@ -50,6 +52,11 @@ public class Main extends Application {
                         true
                 );
     }
+
+//    @Bean(initMethod = "start", destroyMethod = "stop")
+//    public Server inMemoryDBServer() throws SQLException {
+//        return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
+//    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
