@@ -16,7 +16,7 @@ public class GenericUtils {
 
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = i + 1; j < array.length; j++) {
-                if (comparator.compare(array[i], array[j]) < 0) {
+                if (comparator.compare(array[i], array[j]) > 0) {
                     //Swamp if out of order
                     T temp = array[i];
                     array[i] = array[j];

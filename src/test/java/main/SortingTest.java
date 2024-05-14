@@ -10,7 +10,7 @@ public class SortingTest {
     public void SortingTest() {
         Integer[] intArray = {5, 2, 8, 1, 9};
         GenericUtils.sortDescending(intArray);
-        Integer[] expectedIntArray = {1, 2, 5, 8, 9};
+        Integer[] expectedIntArray = {9, 8, 5, 2, 1};
         assertEquals(Arrays.asList(expectedIntArray), Arrays.asList(intArray));
     }
 }
