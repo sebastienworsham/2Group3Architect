@@ -31,7 +31,7 @@ public class StartScreen {
     public static Player playerInstance;
     public static String currentUserName;
     String[] currentUser;
-    private Label timeElapsedLabel;
+    public Label timeElapsedLabel;
     public static Boolean newUser = false;
     LeaderboardScreen lbScreen;
     UserService userService;

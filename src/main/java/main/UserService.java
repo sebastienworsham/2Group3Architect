@@ -26,7 +26,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void updateUser(List<User> users, String userName, int gameLevel) {
+    public User updateUser(List<User> users, String userName, int gameLevel) {
         boolean userUpdated = false;
         System.out.println("Username to update: [" + userName +"]");
         for (User usr : users) {
@@ -39,12 +39,13 @@ public class UserService {
                 usr.setGameLevel(gameLevel);
                 userRepository.save(usr);
                 userUpdated = true;
-                break;
+                return usr;
             }
         }
         if (!userUpdated) {
             System.out.println("User not found");
         }
+
+        return null;
     }
 }
-
