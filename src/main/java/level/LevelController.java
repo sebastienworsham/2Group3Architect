@@ -241,13 +241,13 @@ public class LevelController {
                 }
                 if (currentLine.charAt(j) == 'c') {
                     Node bottomLeftBorderBlock = drawRectangle(j * 60 - 60, i * 60, 60, 60, Color.BLACK);
-                    Node bottomCornerBlock = drawRectangle(j * 60, i * 60 + 60, 60, 60, Color.BLACK);
+                    Node bottomCornerBlock = drawRectangle(j * 60, i * 60, 60, 60, Color.BLACK);
                     leftScreenBorderBlocks.add(bottomLeftBorderBlock);
                     bottomScreenBorderBlocks.add(bottomCornerBlock);
                 }
                 if (currentLine.charAt(j) == 'd') {
                     Node topRightBorderBlock = drawRectangle(j * 60 + 60, i * 60, 60, 60, Color.BLACK);
-                    Node bottomCornerBlock = drawRectangle(j * 60, i * 60 + 60, 60, 60, Color.BLACK);
+                    Node bottomCornerBlock = drawRectangle(j * 60, i * 60, 60, 60, Color.BLACK);
                     rightScreenBorderBlocks.add(topRightBorderBlock);
                     bottomScreenBorderBlocks.add(bottomCornerBlock);
                 }
