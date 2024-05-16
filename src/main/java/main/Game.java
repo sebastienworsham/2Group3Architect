@@ -85,7 +85,7 @@ public class Game {
         }
         if (isPressed(KeyCode.A) || isPressed(KeyCode.LEFT)) {
             if (isPressed(KeyCode.Q) && (currentTime - lastQPressTime > qCooldown)) {
-                playerInstance.movePlayerX(-100);
+                playerInstance.startDash(-15);
                 lastQPressTime = currentTime; // Update last pressed time
             } else {
                 playerInstance.movePlayerX(-5);
@@ -93,7 +93,7 @@ public class Game {
         }
         if (isPressed(KeyCode.D) || isPressed(KeyCode.RIGHT)) {
             if (isPressed(KeyCode.Q) && (currentTime - lastQPressTime > qCooldown)) {
-                playerInstance.movePlayerX(100);
+                playerInstance.startDash(15);
                 lastQPressTime = currentTime; // Update last pressed time
             } else {
                 playerInstance.movePlayerX(5);

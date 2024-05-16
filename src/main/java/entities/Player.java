@@ -20,6 +20,7 @@ public class Player {
     public Node player;
     private boolean canJump = true;
     public static int pVelocityY;
+    public static int xVelocity = 0;
     private static HashMap<KeyCode, Boolean> keys = new HashMap<KeyCode, Boolean>();
 
     private static boolean isPressed(KeyCode key) {
@@ -83,7 +84,15 @@ public class Player {
                 }
             }
             player.setTranslateX(player.getTranslateX() + (movingRight ? 1 : -1));
+            player.setTranslateX(player.getTranslateX() + xVelocity);
+            if (xVelocity != 0) {
+                xVelocity = (int) Math.signum(xVelocity) * Math.max(0, Math.abs(xVelocity) - 1);
+            }
         }
+    }
+
+    public static void startDash(int dashSpeed) {
+        xVelocity = dashSpeed;
     }
 
     public void movePlayerY(int pVelocityY) {
