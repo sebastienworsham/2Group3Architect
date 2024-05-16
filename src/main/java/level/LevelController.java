@@ -26,7 +26,7 @@ import java.util.HashMap;
 
 import static main.Main.*;
 import static main.StartScreen.playerInstance;
-
+//d
 public class LevelController {
     private static String[] currentLevelArray;
     private int levelWidth;
